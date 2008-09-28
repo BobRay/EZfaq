@@ -9,20 +9,32 @@ $sources= array (
     'assets' => dirname(dirname(__FILE__)) . '/assets/',
 );
 
-$element_namespace = 'ezfaq';
-$element_name = 'EZfaq';
-$element_object_type = 'modSnippet';
-$element_type = 'snippet';
-$element_description = '<strong>3.0.5-beta</strong> Generates a FAQ page for your site.';
-$element_source_file = $sources['assets'] . 'ezfaq/snippet.ezfaq.php';
-$element_filename = 'snippet.ezfaq.php';
-$element_category = 0;
-$package_name = $element_name;
+/* This example assumes that you are creating one element with one namespace, a lexicon, and one file resolver.
+*  You'll need to modify it if your situation is different. A snippet with no support files (no images, no css, no js includes, etc.) doesn't need a file
+*  resolver so you can comment out that part of the code. If you have no lexicon, you can comment out that part of the code. If you need to create multiple
+*  elements (e.g. a snippet, several chunks, and maybe a plugin) you can do it all in this file, but you'll have to duplicate the code below that creates
+*  and packages the element. You'll also have to reset the variables for each segment. If you put all your support files in or below in a single
+*  directory, you'll only need one file resolver.
+*/
+
+$element_namespace = 'ezfaq';    // lexicon namespace for your add-on
+$element_name = 'EZfaq';         // name of your element as it will appear in the Manager
+$element_object_type = 'modSnippet';   // What is it?  modSnippet, modChunk, modPlugin, etc.
+$element_type = 'snippet';   // What is it without the "mod"
+$element_description = 'EZfaq 3.0.5-beta -  Generates a FAQ page for your site.'; // description field in the element's editing page
+$element_source_file = $sources['assets'] . 'ezfaq/snippet.ezfaq.php'; // Where's the file PB will use to create the element
+$element_category = 0;  // the category of the element
+$package_name = $element_name;  // The name of the package as it will appear in Workspaces will be this plus the next two variables
 $package_version = '3.0.5';
 $package_release = 'beta';
-$lexicon_path = $sources['root'] . '_build/lexicon/';
-$resolver_source = $sources['assets'] . 'ezfaq';
-$resolver_target = "return MODX_ASSETS_PATH . 'snippets/';";
+$lexicon_path = $sources['root'] . '_build/lexicon/';  // Where's the lexicon directory
+$resolver_source = $sources['assets'] . 'ezfaq';   // Files in this directory will be packaged
+$resolver_target = "return MODX_ASSETS_PATH . 'snippets/';"; // Those files will go here
+
+/* Note that for file resolvers, the named directory itself is also packaged.
+*  So the two lines above will copy the ezfaq dir and its contents
+*  to the assets/snippets/ directory in the target install.
+*/
 
 
 // get rid of time limit
