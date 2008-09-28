@@ -1,0 +1,84 @@
+/**
+ * @package captcha
+ */
+
+/*  EZfaq.css
+File: Readme.txt
+Snippet: EZfaq
+$Revision: 27 $
+$Date: 2008-07-29 12:35:46 -0700 (Tue, 29 Jul 2008) $
+Author: Bob Ray (based on an idea from SorenG and JavaScript code from DynamicDrive.com)
+Compatibility: MODx Revolution
+*/
+
+.faqExpand {      /* show/hide all box */
+
+    text-align:center;
+    text-decoration:none;
+    color:#000000;
+    background-color:#FFCC00;
+    border:2px solid #000000;
+    margin-bottom:20px;
+    padding: 10px 15px 35px 15px;
+}
+.faqExpand p {  /* Click to hide/show all message */
+    text-align:center;
+    color:teal;
+    font-weight:bold;
+    margin:0px 0px 30px 0px;
+    padding:0;
+}
+
+.faqExpand a {     /* show/hide all "button" */
+    text-decoration:none;
+    color:#000000;
+    background-color:#FFCC00;
+    padding:5px;
+    margin:5px;
+    border: 1px solid #000000;
+
+}
+
+.faqExpand a:hover {  /* show/hide all "button" hover */
+    text-decoration:none;
+    color:#000000;
+    background-color:#66CCFF;
+}
+
+
+.faqContainer .faqQuestion {   /* this is the question */
+    color:black;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    font-weight: bold;
+}
+
+
+
+.faqContainer img {  /* this is the icon (if any) */
+    float:none;
+    display:inline;
+    margin: 0px 10px 0px 0px;
+    padding: 0px;
+}
+
+.handcursor{
+    cursor:hand;
+    cursor:pointer;
+    color:black;
+}
+
+.handcursor a:img {
+    color:black;
+    border:none;
+}
+
+
+.switchgroup1 {   /* this is the answer */
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:18px;
+    font-weight:normal;
+    background-color:#CCCCCC;
+    padding:10px 10px 10px 10px;
+    margin:10px 10px 10px 10px;
+}
