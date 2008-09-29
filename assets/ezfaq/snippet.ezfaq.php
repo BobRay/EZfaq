@@ -1,9 +1,10 @@
 <?php
 /**
- * @package captcha
+ * @package ezfaq
  * @author Bob Ray <bobray@softville.com>
  * @created 09-27-2008
  * @version 3.0.5
+ * @release beta
 */
 /*
 (based on an idea from SorenG and JavaScript code from DynamicDrive.com)

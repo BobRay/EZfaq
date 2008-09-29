@@ -1,12 +1,23 @@
 <?php
+/**
+ * EZFaq Build Script
+ *
+ * @name EZFaq
+ * @version 3.0.5
+ * @release beta
+ * @author BobRay <bobray@softville.com>
+ */
 $mtime = microtime();
 $mtime = explode(" ", $mtime);
 $mtime = $mtime[1] + $mtime[0];
 $tstart = $mtime;
 
+$root = dirname(dirname(__FILE__)).'/';
 $sources= array (
-    'root' => dirname(dirname(__FILE__)) . '/',
-    'assets' => dirname(dirname(__FILE__)) . '/assets/',
+    'root' => $root,
+    'assets' => $root . '/assets/',
+    'build' => $root . '/_build/',
+    'lexicon' => $root . '/_build/lexicon/',
 );
 
 /* This example assumes that you are creating one element with one namespace, a lexicon, and one file resolver.
@@ -24,10 +35,9 @@ $element_type = 'snippet';   // What is it without the "mod"
 $element_description = 'EZfaq 3.0.5-beta -  Generates a FAQ page for your site.'; // description field in the element's editing page
 $element_source_file = $sources['assets'] . 'ezfaq/snippet.ezfaq.php'; // Where's the file PB will use to create the element
 $element_category = 0;  // the category of the element
-$package_name = $element_name;  // The name of the package as it will appear in Workspaces will be this plus the next two variables
+$package_name = 'ezfaq';  // The name of the package as it will appear in Workspaces will be this plus the next two variables
 $package_version = '3.0.5';
 $package_release = 'beta';
-$lexicon_path = $sources['root'] . '_build/lexicon/';  // Where's the lexicon directory
 $resolver_source = $sources['assets'] . 'ezfaq';   // Files in this directory will be packaged
 $resolver_target = "return MODX_ASSETS_PATH . 'snippets/';"; // Those files will go here
 
@@ -46,6 +56,9 @@ require_once dirname(__FILE__).'/build.config.php';
 require_once (MODX_CORE_PATH . 'model/modx/modx.class.php');
 $modx= new modX();
 $modx->initialize('mgr');
+echo '<pre>'; // used for nice formatting for log messages
+$modx->setLogLevel(MODX_LOG_LEVEL_INFO);
+$modx->setLogTarget('ECHO');
 //$modx->setDebug(true);
 
 $modx->loadClass('transport.modPackageBuilder','',false, true);
@@ -54,11 +67,9 @@ $builder->create($package_name,$package_version,$package_release);
 $builder->registerNamespace($element_namespace,false,true);
 
 if (!file_exists($element_source_file)) {
-    echo "<b>Error</b> - Element source file not found: {$element_source_file}<br>";
-    exit();
+    $modx->log(MODX_LOG_LEVEL_FATAL,"<b>Error</b> - Element source file not found: {$element_source_file}<br />");
 }
-
-print "Creating element from source file: {$element_source_file}<br>";
+$modx->log(MODX_LOG_LEVEL_INFO,"Creating element from source file: {$element_source_file}<br />");
 
 // get the source from the actual element in your database OR
 // manually create the object, grabbing the source from a file
@@ -75,14 +86,13 @@ $attributes= array(
 );
 $vehicle = $builder->createVehicle($c, $attributes);
 
-echo "<br>Creating Resolver<br>";
+$modx->log(MODX_LOG_LEVEL_INFO,"Creating Resolver<br />");
 
 if (!is_dir($resolver_source)) {
-    echo "<b>Error</b> - Resolver source directory not found: {$resolver_source}<br>";
-    exit();
+    $modx->log(MODX_LOG_LEVEL_FATAL,"<b>Error</b> - Resolver source directory not found: {$resolver_source}<br />");
 }
-echo "&nbsp;&nbsp;&nbsp;&nbsp;Source: {$resolver_source}<br>";
-echo "&nbsp;&nbsp;&nbsp;&nbsp;Target: {$resolver_target}<br><br>";
+$modx->log(MODX_LOG_LEVEL_INFO,"Source: {$resolver_source}<br />");
+$modx->log(MODX_LOG_LEVEL_INFO,"Target: {$resolver_target}<br /><br />");
 
 $vehicle->resolve('file',array(
     'source' => $resolver_source,
@@ -90,14 +100,8 @@ $vehicle->resolve('file',array(
 ));
 $builder->putVehicle($vehicle);
 
-if (!is_dir($lexicon_path)) {
-    echo "<b>Error</b> - Lexicon path not found: {$lexicon_path}";
-    exit();
-}
-echo "Creating lexicon from: {$lexicon_path}<br><br>";
-
 // load lexicon strings
-$builder->buildLexicon($lexicon_path);
+$builder->buildLexicon($sources['lexicon']);
 
 // zip up the package
 $builder->pack();
@@ -109,6 +113,6 @@ $tend= $mtime;
 $totalTime= ($tend - $tstart);
 $totalTime= sprintf("%2.4f s", $totalTime);
 
-echo "Package completed<br>Execution time: {$totalTime}<br>";
+$modx->log(MODX_LOG_LEVEL_INFO,"Package completed.<br />Execution time: {$totalTime}<br>");
 
 exit ();

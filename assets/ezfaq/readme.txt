@@ -1,5 +1,5 @@
 /**
- * @package captcha
+ * @package ezfaq
  */
 
 File: Readme.txt
