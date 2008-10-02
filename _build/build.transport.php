@@ -63,7 +63,7 @@ $modx->setLogTarget('ECHO');
 
 $modx->loadClass('transport.modPackageBuilder','',false, true);
 $builder = new modPackageBuilder($modx);
-$builder->create($package_name,$package_version,$package_release);
+$builder->createPackage($package_name,$package_version,$package_release);
 $builder->registerNamespace($element_namespace,false,true);
 
 if (!file_exists($element_source_file)) {
