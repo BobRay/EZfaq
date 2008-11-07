@@ -118,7 +118,7 @@ A:<a href="http://domain.com/assets/images/small-pic.jpg" rel="lightbox"><img sr
 
 /* set path to resources */
 
-$faqPath = MODX_BASE_URL . "assets/snippets/ezfaq/";
+$faqPath = MODX_BASE_URL . 'assets/components/ezfaq/';
 
 $error_message = "";
 
@@ -292,4 +292,3 @@ $output .= 'faq.init();'."\n";
 $output .= '</script>'."\n";
 
 return $output;
-?>
