@@ -18,7 +18,7 @@ $sources= array (
     'assets' => $root . '/assets/',
     'build' => $root . '/_build/',
     'lexicon' => $root . '/_build/lexicon/',
-    'docs' => $root . '/assets/components/ezfaq/docs/',
+    'docs' => $root . '/ezfaq/docs/',
 );
 
 /* This example assumes that you are creating one element with one namespace, a lexicon, and one file resolver.
@@ -33,13 +33,13 @@ $element_namespace = 'ezfaq';    // lexicon namespace for your add-on
 $element_name = 'EZfaq';         // name of your element as it will appear in the Manager
 $element_object_type = 'modSnippet';   // What is it?  modSnippet, modChunk, modPlugin, etc.
 $element_type = 'snippet';   // What is it without the "mod"
-$element_description = 'EZfaq 3.0.5-beta -  Generates a FAQ page for your site.'; // description field in the element's editing page
-$element_source_file = $sources['assets'] . 'components/ezfaq/snippet.ezfaq.php'; // Where's the file PB will use to create the element
+$element_description = 'EZfaq 3.0.5-beta2 -  Generates a FAQ page for your site.'; // description field in the element's editing page
+$element_source_file = $sources['root'] . 'ezfaq/snippet.ezfaq.php'; // Where's the file PB will use to create the element
 $element_category = 0;  // the category of the element
 $package_name = 'ezfaq';  // The name of the package as it will appear in Workspaces will be this plus the next two variables
 $package_version = '3.0.5';
-$package_release = 'beta';
-$resolver_source = $sources['assets'] . 'components/ezfaq';   // Files in this directory will be packaged
+$package_release = 'beta2';
+$resolver_source = $sources['root'] . 'ezfaq';   // Files in this directory will be packaged
 $resolver_target = "return MODX_ASSETS_PATH . 'components/';"; // Those files will go here
 
 /* Note that for file resolvers, the named directory itself is also packaged.
