@@ -1,0 +1,10 @@
+EZfaq Change Log
+----------------
+
+3.0.6
+-----
+Added image folder to package
+Corrected error in readme.txt.
+Added warning about using mixed case for Extra:
+
+3.0.5  First full release

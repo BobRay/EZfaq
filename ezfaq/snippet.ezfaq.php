@@ -3,7 +3,7 @@
  * @package ezfaq
  * @author Bob Ray <bobray@softville.com>
  * @created 09-27-2008
- * @version 3.0.5
+ * @version 3.0.6
  * @release beta
 */
 /*
@@ -61,6 +61,7 @@ Q:How much is two plus two?
 A:Four
 
 Extra: This will always be rendered between questions. (optional)
+(Important: Be sure to use Extra:, not EXTRA:)
 
 Q:Who is the fifth avatar of Vishnu?
 

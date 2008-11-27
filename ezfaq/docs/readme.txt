@@ -30,7 +30,8 @@ Q:How much is two plus two?
 
 A:Four
 
-EXTRA: This will always be rendered between questions. (optional)
+Extra: This will always be rendered between questions. (optional)
+(Important: Be sure to use Extra:, not EXTRA:)
 
 Q:Who is the fifth avatar of Vishnu?
 
