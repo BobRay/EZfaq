@@ -44,7 +44,7 @@ $resolver_target = "return MODX_ASSETS_PATH . 'components/';"; // Those files wi
 
 /* Note that for file resolvers, the named directory itself is also packaged.
 *  So the two lines above will copy the ezfaq dir and its contents
-*  to the assets/snippets/ directory in the target install.
+*  to the assets/components/ directory in the target install.
 */
 
 

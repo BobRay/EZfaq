@@ -89,13 +89,13 @@ check.png        x.png
 
 Image URL full example:
 
-[[EZfaq? &docID=`12` &statusOpenHTML=`<img srcEQUALS"assets/snippets/ezfaq/images/minus.png">` &statusClosedHTML=`<img srcEQUALS"assets/snippets/ezfaq/images/plus.png">`]]
+[[EZfaq? &docID=`12` &statusOpenHTML=`<img srcEQUALS"assets/components/ezfaq/images/minus.png">` &statusClosedHTML=`<img srcEQUALS"assets/components/ezfaq/images/plus.png">`]]
 
 
 Styling EZfaq
 -------------
 Some styling is accomplished with the parameters in the snippet call. Other styling issues require changes to the file:
-/assets/snippets/ezfaq/ezfaq.css
+/assets/components/ezfaq/ezfaq.css
 
 
 

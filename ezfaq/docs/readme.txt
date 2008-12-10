@@ -57,10 +57,13 @@ Parameters must be enclosed in "back-ticks" not single quotes.
 Note that the docID is NOT the document identifier of the document containing the
 snippet call. It is the document identifier of the document containing the Qs and As.
 
-EZfaq Installation
-------------------
-1. Extract the contents of the EZfaq zip file to your assets/snippets directory.
-The files should end up in a directory called /assets/snippets/ezfaq.
+EZfaq Manual Installation
+-------------------------
+If you are not using the automatic installation in MODx Revolution, EZfaq can
+be installed manually by following these steps:
+
+1. Extract the contents of the EZfaq zip file to your assets/components directory.
+The files should end up in a directory called /assets/components/ezfaq.
 
 2. Create a new document for your FAQ content as described above. Add some
 questions and answers.
