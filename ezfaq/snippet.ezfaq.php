@@ -46,7 +46,9 @@ Optional parameters:
 
 &defaultExpanded  [expand answers n1 through n2 ("0,1" expands items 1 through 2)when page is opened (default, no)]
 
-&cssPath [Optional Path to .css file -- set to `` for no .css file]
+&cssPath [Optional URL to .css file -- set to `` for no .css file]
+
+&faqPath [URL to the EZfaq directory] - default /assets/components/ezfaq
 
 Create a published document to display the FAQ. Put the snippet call in that document.
 Then create an unpublished document to hold the FAQ content (it makes sense for it to be a child of the first doc).
@@ -119,7 +121,7 @@ A:<a href="http://domain.com/assets/images/small-pic.jpg" rel="lightbox"><img sr
 
 /* set path to resources */
 
-$faqPath = MODX_BASE_URL . 'assets/components/ezfaq/';
+$faqPath = isset($faqPath)? $faqPath : MODX_BASE_URL . 'assets/components/ezfaq/';
 
 $error_message = "";
 
@@ -132,15 +134,15 @@ $modx->lexicon->load('ezfaq:default');
 Make sure we have what we need before proceeding
 ***********************************************/
 
-if (!isset($docID)) {  // user didn't send docID parameter
+if (!isset($docID)) { /* User didn't send docID parameter */
     return $modx->lexicon('ezfaq-docID-required');
 }
 
-$doc = $modx->getDocument((string)$docID, '*', 1); // Search published first.
+$doc = $modx->getDocument((string)$docID, '*', 1); /* Search published first. */
 if (empty($doc)) {
-    $doc = $modx->getDocument((string)$docID, '*', 0); // Un-published next?
+    $doc = $modx->getDocument((string)$docID, '*', 0); /* Un-published next? */
 }
-if (empty($doc)) { // user requested a non-existing document
+if (empty($doc)) { /* user requested a non-existing document */
    return $modx->lexicon('ezfaq-doc-not-found');
 }
 
@@ -153,14 +155,14 @@ content, we'll plug in the .css and .js and  initialize the optional parameters.
     Use $cssPath=`` if you want to put the .css in your site's .css file
     rather than using a separate .css file for the FAQ  */
 
-if (isset($cssPath) ) {    // user has set this parameter
+if (isset($cssPath) ) {    /* user has set this parameter */
     if ($cssPath == "") {
-        // do nothing, user doesn't want a separate .css file
-    } else { // user has specified the .css file to use
+        /* do nothing, user doesn't want a separate .css file */
+    } else { /* user has specified the .css file to use */
         $src = $cssPath;
         $modx->regClientCSS($src);
     }
-} else { // not set, use the default .css file
+} else { /* not set, use the default .css file */
 
     $src = $faqPath."ezfaq.css";
     $modx->regClientCSS($src);
@@ -208,6 +210,9 @@ $output = "";
 $docString = $doc['content'];
 
 
+/* if $showHideAllOption == true, this puts the show all/hide all buttons
+ * at the top of the page.
+ */
 
 if ($showHideAllOption) {
 
@@ -228,23 +233,25 @@ $docArray = explode("Q:",$docString);
 
 /* for debugging  */
 
-//$i = count($docArray);
-// echo "count: ".$i.'<br>';
+/*
+$i = count($docArray);
+echo "count: ".$i.'<br>';
+ */
 
-$itemCount=0; // used to make every id different
+$itemCount=0; /* used to make every id different */
 
 
 $output .= '<div class="faqContainer">'."\n";
 foreach($docArray as $value) {
 
 
-    if ($itemCount==0) {  // very first item (or pre first item)
-        if (!strstr($value,"A:")) {   // no answer, assume it's before the beginning
-           $output .= $value;  // send it out without processing
-           continue;  // got to the next (first real item)
+    if ($itemCount==0) {  /* very first item (or pre first item) */
+        if (!strstr($value,"A:")) {   /* no answer, assume it's before the beginning */
+           $output .= $value;  /* send it out without processing */
+           continue;  /* got to the next (first real item) */
         }
     } else {
-        //normal item, continue
+        /* normal item, continue */
     }
   $items = explode("A:",$value);
       if (stristr($items[0],"FAQ-END")) {
@@ -270,25 +277,26 @@ foreach($docArray as $value) {
   }
   $itemCount++;
 }
-$output .= '</div>'."\n"; // end of faqContainer div
+$output .= '</div>'."\n"; /* end of faqContainer div */
 
-//   MAIN FUNCTION: new switchcontent("class name", "[optional_element_type_to_scan_for]") REQUIRED
-//1) Instance.setStatus(openHTML, closedHTML)- Sets optional HTML to prefix the headers to indicate open/closed states
-//2) Instance.setColor(openheaderColor, closedheaderColor)- Sets optional color of header when it's open/closed
-//3) Instance.setPersist(true/false)- Enables or disabled session only persistence (recall contents' expand/contract states)
-//4) Instance.collapsePrevious(true/false)- Sets whether previous content should be contracted when current one is expanded
-//5) Instance.defaultExpanded(indices)- Sets contents that should be expanded by default (ie: 0, 1). Persistence feature overrides this setting!
-//6) Instance.init() REQUIRED
+/*   MAIN FUNCTION: new switchcontent("class name", "[optional_element_type_to_scan_for]") REQUIRED
+1) Instance.setStatus(openHTML, closedHTML)- Sets optional HTML to prefix the headers to indicate open/closed states
+2) Instance.setColor(openheaderColor, closedheaderColor)- Sets optional color of header when it's open/closed
+3) Instance.setPersist(true/false)- Enables or disabled session only persistence (recall contents' expand/contract states)
+4) Instance.collapsePrevious(true/false)- Sets whether previous content should be contracted when current one is expanded
+5) Instance.defaultExpanded(indices)- Sets contents that should be expanded by default (ie: 0, 1). Persistence feature overrides this setting!
+6) Instance.init() REQUIRED
+*/
 
 $output .= '<script type="text/javascript">;'."\n";
-$output .= 'var faq=new switchcontent("switchgroup1", "div");'."\n";  //Limit scanning of switch contents to just "div" elements
+$output .= 'var faq=new switchcontent("switchgroup1", "div");'."\n";  /* Limit scanning of switch contents to just "div" elements */
 
 
-$output .= "faq.setStatus('".$statusOpenHTML." ','".$statusClosedHTML." ');"."\n"; // set open/closed indicators
-$output .= 'faq.setColor("'.$openColor.'", "'.$closedColor.'");'."\n"; // set open/closed text colors
+$output .= "faq.setStatus('".$statusOpenHTML." ','".$statusClosedHTML." ');"."\n"; /* set open/closed indicators */
+$output .= 'faq.setColor("'.$openColor.'", "'.$closedColor.'");'."\n"; /* set open/closed text colors */
 $output .= 'faq.setPersist('.$setPersist.');'."\n";
-$output .= 'faq.collapsePrevious('.$collapsePrevious.');'."\n"; //Only one content open at any given time
-$output .= 'faq.defaultExpanded("'.$defaultExpanded.'");'."\n"; // expand some on open?
+$output .= 'faq.collapsePrevious('.$collapsePrevious.');'."\n"; /* Only one content open at any given time */
+$output .= 'faq.defaultExpanded("'.$defaultExpanded.'");'."\n"; /* expand some on open?  */
 $output .= 'faq.init();'."\n";
 $output .= '</script>'."\n";
 

@@ -84,27 +84,25 @@ It just holds the content. You can leave most of the fields blank.
 
 9. Replace ## with the document number of your unpublished FAQ content document created above.
 
-10. Create a new snippet named EZfaq in the MODx Manager (Resources | Manage Resources | Snippets | New Snippet).
+10. Create a new snippet named EZfaq in the MODx Manager.
 
-11. Cut and paste the code from the ezfaq.inc.php file in the /assets/snippets/ezfaq directory into the body of the snippet and save it.
+11. Cut and paste the code from the ezfaq.inc.php file in the /assets/components/ezfaq directory into the body of the snippet and save it.
 
 EZfaq Optional Parameters
 -------------------------
 The following parameters change the behavior of EZfaq in various ways.
-
-&lang   // [Language for error messages - defaults to "en"]
 
 &showHideAllOption // [display the show/hide all buttons - default "true"]
 
 &statusOpenHTML  // [symbol to put next to open topics (can be an image URL) - defaults to "[-]"]
 
     // Note: To use a URL replace the "=" sign with "EQUALS" in the snippet call
-    // Example: &statusOpenHTML=`<img srcEQUALS"assets/snippets/ezfaq/images/minus.png">`
+    // Example: &statusOpenHTML=`<img srcEQUALS"assets/components/ezfaq/images/minus.png">`
 
 &statusClosedHTML  // [symbol to put next to closed topics (can be an image URL) - defaults to "[+]"]
 
     // Note: To use a URL replace the "=" sign with "EQUALS" in the snippet call
-    // Example: &statusClosedHTML=`<img srcEQUALS"assets/snippets/ezfaq/images/plus.png">`
+    // Example: &statusClosedHTML=`<img srcEQUALS"assets/components/ezfaq/images/plus.png">`
 
 &openColor  // [color for open questions (name or hex value #ffffff) - default "red"]
 
@@ -118,10 +116,11 @@ The following parameters change the behavior of EZfaq in various ways.
 
 &defaultExpanded  // [expand answers n1 through n2 ("0,1" expands items 1 through 2) when page is opened (default, none)]
 
-&cssPath // [path to your own .css file for EZfaq]
+&cssPath // [URL to your own .css file for EZfaq]
 
        // Note: use &cssPath = `` if you want to put the .css in your site .css file and use no file here
 
+ &faqPath // [URL to the EZfaq directory] - default /assets/components/ezfaq
 
 
 Available open/closed image pairs
@@ -135,13 +134,13 @@ check.png        x.png
 
 Image URL full example:
 
-[[EZfaq? &docID=`12` &statusOpenHTML=`<img srcEQUALS"assets/snippets/ezfaq/images/minus.png">` &statusClosedHTML=`<img srcEQUALS"assets/snippets/ezfaq/images/plus.png">`]]
+[[EZfaq? &docID=`12` &statusOpenHTML=`<img srcEQUALS"assets/components/ezfaq/images/minus.png">` &statusClosedHTML=`<img srcEQUALS"assets/components/ezfaq/images/plus.png">`]]
 
 
 Styling EZfaq
 -------------
 Some styling is accomplished with the parameters in the snippet call. Other styling issues require changes to the file:
-/assets/snippets/ezfaq/ezfaq.css
+/assets/components/ezfaq/ezfaq.css
 
 
 
