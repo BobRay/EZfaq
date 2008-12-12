@@ -3,7 +3,7 @@
  * EZFaq Build Script
  *
  * @name EZFaq
- * @version 3.0.6
+ * @version 3.0.7
  * @release beta
  * @author BobRay <bobray@softville.com>
  */
@@ -13,9 +13,14 @@ $mtime = $mtime[1] + $mtime[0];
 $tstart = $mtime;
 
 $root = dirname(dirname(__FILE__)).'/';
+
+/*  Uncomment the next line if you need to debug the setting above after checkout */
+
+/* die("ROOT: " . $root); */
+
+
 $sources= array (
     'root' => $root,
-    'assets' => $root . '/assets/',
     'build' => $root . '/_build/',
     'lexicon' => $root . '/_build/lexicon/',
     'docs' => $root . '/ezfaq/docs/',
@@ -29,38 +34,38 @@ $sources= array (
 *  directory, you'll only need one file resolver.
 */
 
-$element_namespace = 'ezfaq';    // lexicon namespace for your add-on
-$element_name = 'EZfaq';         // name of your element as it will appear in the Manager
-$element_object_type = 'modSnippet';   // What is it?  modSnippet, modChunk, modPlugin, etc.
-$element_type = 'snippet';   // What is it without the "mod"
-$element_description = 'EZfaq 3.0.6-beta1 -  Generates a FAQ page for your site.'; // description field in the element's editing page
-$element_source_file = $sources['root'] . 'ezfaq/snippet.ezfaq.php'; // Where's the file PB will use to create the element
-$element_category = 0;  // the category of the element
-$package_name = 'ezfaq';  // The name of the package as it will appear in Workspaces will be this plus the next two variables
-$package_version = '3.0.6';
+$element_namespace = 'ezfaq';    /* lexicon namespace for your add-on */
+$element_name = 'EZfaq';         /* name of your element as it will appear in the Manager */
+$element_object_type = 'modSnippet';   /* What is it?  modSnippet, modChunk, modPlugin, etc. */
+$element_type = 'snippet';   /* What is it without the "mod" */
+$element_description = 'EZfaq 3.0.7-beta1 -  Generates a FAQ page for your site.'; /* description field in the element's editing page */
+$element_source_file = $sources['root'] . 'ezfaq/snippet.ezfaq.php'; /* Where's the file PB will use to create the element */
+$element_category = 0;  /* the category of the element */
+$package_name = 'ezfaq';  /* The name of the package as it will appear in Workspaces will be this plus the next two variables */
+$package_version = '3.0.7';
 $package_release = 'beta1';
-$resolver_source = $sources['root'] . 'ezfaq';   // Files in this directory will be packaged
-$resolver_target = "return MODX_ASSETS_PATH . 'components/';"; // Those files will go here
+$resolver_source = $sources['root'] . 'ezfaq';   /* Files in this directory will be packaged */
+$resolver_target = "return MODX_ASSETS_PATH . 'components/';"; /* Those files will go here */
+
 
 /* Note that for file resolvers, the named directory itself is also packaged.
 *  So the two lines above will copy the ezfaq dir and its contents
 *  to the assets/components/ directory in the target install.
 */
 
-
-// get rid of time limit
+/* get rid of time limit */
 set_time_limit(0);
 
-// override with your own defines here (see build.config.sample.php)
+/* override with your own defines here (see build.config.sample.php) */
 require_once dirname(__FILE__).'/build.config.php';
 
 require_once (MODX_CORE_PATH . 'model/modx/modx.class.php');
 $modx= new modX();
 $modx->initialize('mgr');
-echo '<pre>'; // used for nice formatting for log messages
+echo '<pre>'; /* used for nice formatting for log messages */
 $modx->setLogLevel(MODX_LOG_LEVEL_INFO);
 $modx->setLogTarget('ECHO');
-//$modx->setDebug(true);
+/* $modx->setDebug(true); */
 
 $modx->loadClass('transport.modPackageBuilder','',false, true);
 $builder = new modPackageBuilder($modx);
@@ -72,15 +77,17 @@ if (!file_exists($element_source_file)) {
 }
 $modx->log(MODX_LOG_LEVEL_INFO,"Creating element from source file: {$element_source_file}<br />");
 
-// get the source from the actual element in your database OR
-// manually create the object, grabbing the source from a file
+/* get the source from the actual element in your database OR
+ manually create the object, grabbing the source from a file
+ */
+
 $c= $modx->newObject($element_object_type);
 $c->set('name', $element_name);
 $c->set('description', $element_description);
 $c->set('category', $element_category);
 $c->set($element_type, file_get_contents($element_source_file));
 
-// create a transport vehicle for the data object
+/* create a transport vehicle for the data object */
 $attributes= array(
     XPDO_TRANSPORT_UNIQUE_KEY => 'name',
     XPDO_TRANSPORT_UPDATE_OBJECT => true,
@@ -99,18 +106,27 @@ $vehicle->resolve('file',array(
     'source' => $resolver_source,
     'target' => $resolver_target,
 ));
+
+/* Create the php resolver to install the sample FAQ */
+$vehicle->resolve('php',array(
+            'type' => 'php',
+            'source' => $sources['build'] . "install-script.php",
+            'target' => "return '" . $sources['build'] . "';"
+
+        ));
 $builder->putVehicle($vehicle);
 
 /* now pack in the license file, readme and setup options */
 $builder->setPackageAttributes(array(
     'license' => file_get_contents($sources['docs'] . 'license.txt'),
     'readme' => file_get_contents($sources['docs'] . 'readme.txt'),
+    'setup-options' => file_get_contents($sources['build'] . 'user_input.html')
 ));
 
-// load lexicon strings
+/* load lexicon strings */
 $builder->buildLexicon($sources['lexicon']);
 
-// zip up the package
+/* zip up the package */
 $builder->pack();
 
 $mtime= microtime();

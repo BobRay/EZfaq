@@ -1,6 +1,12 @@
 EZfaq Change Log
 ----------------
 
+3.0.7
+-----
+Install now allows user to install sample FAQ
+All comments to /* */ format
+Minor bug fixes
+
 3.0.6
 -----
 Added image folder to package

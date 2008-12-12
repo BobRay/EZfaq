@@ -6,7 +6,7 @@ File: Readme.txt
 Snippet: EZfaq
 $Revision: 29 $
 $Date: 2008-09-29 16:05:10 -0700 (Tue, 22 Sep 2008) $
-Compatibility: Revolution
+Compatibility: MODx Revolution
 
 Author: Bob Ray (based on an idea from SorenG and JavaScript code from DynamicDrive.com)
 
@@ -21,7 +21,11 @@ You can see the results at http://bobsguides.com/modx-faq.html
 
 USING EZfaq
 -----------
-The contents of the FAQ page are stored in a standard MODx document with the following form:
+
+If you choose to install the Sample FAQ, you can just edit the content with your
+own questions and answers.
+
+The contents of the FAQ page are stored in an unpublished standard MODx document with the following form:
 
 
 This will be rendered above the first question (optional)

@@ -1,0 +1,21 @@
+This will be rendered above the first question (optional)
+
+Q:How much is two plus two?
+
+A:Four
+
+Extra: This will always be rendered between questions. (optional)
+(Important: Be sure to use Extra:, not EXTRA:)
+
+Q:Who is the fifth avatar of Vishnu?
+
+A:Vamana the Dwarf.
+
+Q:What is Sigmund Freud's middle name?
+
+A:Schlomo
+
+(etc.)
+Q:END-FAQ
+
+Work in progress can go here and won't be displayed. (optional)
