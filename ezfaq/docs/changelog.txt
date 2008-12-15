@@ -1,5 +1,9 @@
 EZfaq Change Log
 ----------------
+3.0.8
+-----
+Corrected minor bugs in sample content
+Corrected formatting in uninstall message
 
 3.0.7
 -----

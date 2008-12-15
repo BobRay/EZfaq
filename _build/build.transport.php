@@ -3,7 +3,7 @@
  * EZFaq Build Script
  *
  * @name EZFaq
- * @version 3.0.7
+ * @version 3.0.8
  * @release beta
  * @author BobRay <bobray@softville.com>
  */
@@ -38,11 +38,11 @@ $element_namespace = 'ezfaq';    /* lexicon namespace for your add-on */
 $element_name = 'EZfaq';         /* name of your element as it will appear in the Manager */
 $element_object_type = 'modSnippet';   /* What is it?  modSnippet, modChunk, modPlugin, etc. */
 $element_type = 'snippet';   /* What is it without the "mod" */
-$element_description = 'EZfaq 3.0.7-beta1 -  Generates a FAQ page for your site.'; /* description field in the element's editing page */
+$element_description = 'EZfaq 3.0.8-beta1 -  Generates a FAQ page for your site.'; /* description field in the element's editing page */
 $element_source_file = $sources['root'] . 'ezfaq/snippet.ezfaq.php'; /* Where's the file PB will use to create the element */
 $element_category = 0;  /* the category of the element */
 $package_name = 'ezfaq';  /* The name of the package as it will appear in Workspaces will be this plus the next two variables */
-$package_version = '3.0.7';
+$package_version = '3.0.8';
 $package_release = 'beta1';
 $resolver_source = $sources['root'] . 'ezfaq';   /* Files in this directory will be packaged */
 $resolver_target = "return MODX_ASSETS_PATH . 'components/';"; /* Those files will go here */

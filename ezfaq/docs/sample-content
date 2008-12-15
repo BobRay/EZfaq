@@ -5,7 +5,7 @@ Q:How much is two plus two?
 A:Four
 
 Extra: This will always be rendered between questions. (optional)
-(Important: Be sure to use Extra:, not EXTRA:)
+<br>Important: Be sure to use Extra(colon), not EXTRA(colon).
 
 Q:Who is the fifth avatar of Vishnu?
 

@@ -86,7 +86,7 @@ switch($options[XPDO_TRANSPORT_PACKAGE_ACTION]) {
             $success = true;
             break;
         case XPDO_TRANSPORT_ACTION_UNINSTALL:
-            $object->xpdo->log(XPDO_LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the two Resources (the FAQ <br /> and FAQ Content documents) manually</b><br />");
+            $object->xpdo->log(XPDO_LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the two Resources (the FAQ and FAQ Content documents) manually</b><br />");
 
             $success = true;
             break;
