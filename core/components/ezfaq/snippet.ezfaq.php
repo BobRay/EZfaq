@@ -120,10 +120,9 @@ A:<a href="http://domain.com/assets/images/small-pic.jpg" rel="lightbox"><img sr
 
 
 /* set path to resources */
+$faqPath = $modx->getOption('faqPath',$scriptProperties,$modx->getOption('base_url') . 'assets/components/ezfaq/');
 
-$faqPath = isset($faqPath)? $faqPath : MODX_BASE_URL . 'assets/components/ezfaq/';
-
-$error_message = "";
+$error_message = '';
 
 /* get the lexicon entries for the EZfaq prompts */
 
@@ -138,11 +137,8 @@ if (!isset($docID)) { /* User didn't send docID parameter */
     return $modx->lexicon('ezfaq-docID-required');
 }
 
-$doc = $modx->getDocument((string)$docID, '*', 1); /* Search published first. */
-if (empty($doc)) {
-    $doc = $modx->getDocument((string)$docID, '*', 0); /* Un-published next? */
-}
-if (empty($doc)) { /* user requested a non-existing document */
+$resource = $modx->getObject('modResource',$docID);
+if ($resource == null) { /* user requested a non-existing document */
    return $modx->lexicon('ezfaq-doc-not-found');
 }
 
@@ -155,75 +151,66 @@ content, we'll plug in the .css and .js and  initialize the optional parameters.
     Use $cssPath=`` if you want to put the .css in your site's .css file
     rather than using a separate .css file for the FAQ  */
 
-if (isset($cssPath) ) {    /* user has set this parameter */
-    if ($cssPath == "") {
-        /* do nothing, user doesn't want a separate .css file */
-    } else { /* user has specified the .css file to use */
-        $src = $cssPath;
-        $modx->regClientCSS($src);
-    }
-} else { /* not set, use the default .css file */
+$cssPath = $modx->getOption('cssPath',$scriptProperties,'');
 
-    $src = $faqPath."ezfaq.css";
-    $modx->regClientCSS($src);
+if (!empty($cssPath)) {    /* user has set this parameter */
+    /* user has specified the .css file to use */
+    $modx->regClientCSS($cssPath);
+} else { /* not set, use the default .css file */
+    $modx->regClientCSS($faqPath.'ezfaq.css');
 }
 
 /* inject the .js into the document header. */
-
-$src = $faqPath."switchcontent.js";
-$modx->regClientStartupScript($src);
+$modx->regClientStartupScript($faqPath.'switchcontent.js');
 
 
 /*Show the buttons that show and hide all answers. */
-
-$showHideAllOption = isset($showHideAllOption)?$showHideAllOption:true;
+$showHideAllOption = $modx->getOption('showHideAllOption',$scriptProperties,true);
 
 /* Set prefix markers for open and closed answers (can be string or an image URL). Defaults to plus and minus signs. */
-$statusOpenHTML = isset($statusOpenHTML)?$statusOpenHTML:"[-]";
-$statusClosedHTML = isset($statusClosedHTML)?$statusClosedHTML:"[+]";
+$statusOpenHTML = $modx->getOption('statusOpenHTML',$scriptProperties,'[-]');
+$statusClosedHTML = $modx->getOption('statusOpenHTML',$scriptProperties,'[+]');
 
 /* Set colors for open and closed (applies to question; answer is styled in .css). Can be color name or hex color value (#ffffff); */
-$openColor = isset($openColor)?$openColor:"red";
-$closedColor = isset($closedColor)?$closedColor:"black";
+$openColor = $modx->getOption('openColor',$scriptProperties,'red');
+$closedColor = $modx->getOption('closedColor',$scriptProperties,'black');
 
 /* set whether state persists on return visits  */
-$setPersist = isset($setPersist)?$setPersist:"true";
+$setPersist = $modx->getOption('setPersist',$scriptProperties,'true');
 
 /* when set to true, only one answer can be expanded at a time (default) */
-$collapsePrevious = isset($collapsePrevious)?$collapsePrevious:"true";
+$collapsePrevious = $modx->getOption('collapsePrevious',$scriptProperties,'true');
 
 /* expand answers n1 through n2 when page is opened (default, no)to set, use "0,2" to expand first three answers, "0" to expand just the first */
-$defaultExpanded = isset($defaultExpanded)?$defaultExpanded:"";
+$defaultExpanded = $modx->getOption('defaultExpanded',$scriptProperties,'');
+
+/* debug setting */
+$debug = $modx->getOption('debug',$scriptProperties,false);
 
 /************************************
  *  Work starts here
 *************************************/
 
 /* replace "EQUALS" in URLs with "=" */
-
 $statusOpenHTML = str_replace("EQUALS","=",$statusOpenHTML);
 $statusClosedHTML = str_replace("EQUALS","=",$statusClosedHTML);
 
+$output = '';
 
-$output = "";
-
-$docString = $doc['content'];
-
-
+$docString = $resource->get('content');
 /* if $showHideAllOption == true, this puts the show all/hide all buttons
  * at the top of the page.
  */
 
 if ($showHideAllOption) {
+    $output .= '<div class="faqExpand">';
+    $output .= '<p>'.$modx->lexicon('ezfaq-show-hide-msg').'</p>';
 
-$output .= '<div class="faqExpand">';
-$output .= '<p>'.$modx->lexicon('ezfaq-show-hide-msg').'</p>';
+    $output .= '<a href="javascript:faq.sweepToggle('."'expand')".'"> '.$modx->lexicon('ezfaq-expand-button-msg').' </a>';
+    $output .='&nbsp;&nbsp;&nbsp;&nbsp;';
+    $output .= '<a href="javascript:faq.sweepToggle('."'contract')".'"> '.$modx->lexicon('ezfaq-contract-button-msg').' </a>';
 
-$output .= '<a href="javascript:faq.sweepToggle('."'expand')".'"> '.$modx->lexicon('ezfaq-expand-button-msg').' </a>';
-$output .='&nbsp;&nbsp;&nbsp;&nbsp;';
-$output .= '<a href="javascript:faq.sweepToggle('."'contract')".'"> '.$modx->lexicon('ezfaq-contract-button-msg').' </a>';
-
-$output .= '</div>';
+    $output .= '</div>';
 
 }
 
@@ -233,17 +220,16 @@ $docArray = explode("Q:",$docString);
 
 /* for debugging  */
 
-/*
-$i = count($docArray);
-echo "count: ".$i.'<br>';
- */
+if ($debug) {
+    $i = count($docArray);
+    echo "count: ".$i.'<br />';
+}
 
 $itemCount=0; /* used to make every id different */
 
 
 $output .= '<div class="faqContainer">'."\n";
 foreach($docArray as $value) {
-
 
     if ($itemCount==0) {  /* very first item (or pre first item) */
         if (!strstr($value,"A:")) {   /* no answer, assume it's before the beginning */

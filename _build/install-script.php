@@ -1,26 +1,21 @@
-  <?php
-
-  $root = dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/';
-
+<?php
+/**
+ * @package ezfaq
+ */
+$root = $object->xpdo->getOption('core_path');
 $sources= array (
-    'root' => $root,
-    'docs' => $root . 'assets/components/ezfaq/docs/'
-
+    'docs' => $root . 'components/ezfaq/docs/'
 );
-
-$default_template = $object->xpdo->config['default_template'];
+$default_template = $object->xpdo->getOption('default_template');
 
 $success = false;
 switch($options[XPDO_TRANSPORT_PACKAGE_ACTION]) {
-
-
-
     case XPDO_TRANSPORT_ACTION_INSTALL:
-        if (isset($options['install_sample']) && $options['install_sample'] == 'Yes' ) {
-
+        $install_sample = $object->xpdo->getOption('install_sample',$options,'No');
+        if ($install_sample == 'Yes') {
             $object->xpdo->log(XPDO_LOG_LEVEL_INFO,"Creating resource: Sample FAQ Page<br />");
             $r = $object->xpdo->newObject('modResource');
-            $r->set('class_key','modDocument');
+            $r->set('class_key','modResource');
             $r->set('context_key','web');
             $r->set('type','document');
             $r->set('contentType','text/html');
@@ -45,12 +40,10 @@ switch($options[XPDO_TRANSPORT_PACKAGE_ACTION]) {
             $faqId = $r->get('id');  /* need this to set content page parent */
 
             /* now create FAQ content page */
-
-
             $object->xpdo->log(XPDO_LOG_LEVEL_INFO,"<br>Creating resource: FAQ Contents<br />");
             $r = $object->xpdo->newObject('modResource');
 
-            $r->set('class_key','modDocument');
+            $r->set('class_key','modResource');
             $r->set('context_key','web');
             $r->set('type','document');
             $r->set('contentType','text/html');
@@ -63,7 +56,7 @@ switch($options[XPDO_TRANSPORT_PACKAGE_ACTION]) {
             $r->set('isfolder','0');
             $r->setContent('[[EZfaq]]');
             $r->set('richtext','0');
-            $r->setContent(file_get_contents($sources['docs'] . 'sample-content'));
+            $r->setContent(file_get_contents($sources['docs'] . 'sample-content.txt'));
             $r->set('searchable','0');
             $r->set('cacheable','1');
             $r->set('template',$default_template);
@@ -73,24 +66,45 @@ switch($options[XPDO_TRANSPORT_PACKAGE_ACTION]) {
             $r->save();
             $faqContentId = $r->get('id');  /* need this to set docID in the snippet */
 
-            $resource = $object->xpdo->getObject('modDocument', array('pagetitle' => 'Sample FAQ Page') );
-            $resource->setContent("[[EZfaq? &docID=`" . $faqContentId . "`]]" );
-            $resource->save();
-
+            $resource = $object->xpdo->getObject('modResource', array('pagetitle' => 'Sample FAQ Page') );
+            if ($resource) {
+                $resource->setContent("[[EZfaq? &docID=`" . $faqContentId . "`]]" );
+                $resource->save();
             }
+        }
 
-            $success = true;
-            break;
+        $success = true;
+        break;
 
-        case XPDO_TRANSPORT_ACTION_UPGRADE:
-            $success = true;
-            break;
-        case XPDO_TRANSPORT_ACTION_UNINSTALL:
-            $object->xpdo->log(XPDO_LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the two Resources (the FAQ and FAQ Content documents) manually</b><br />");
+    case XPDO_TRANSPORT_ACTION_UPGRADE:
+        $success = true;
+        break;
 
-            $success = true;
-            break;
+    case XPDO_TRANSPORT_ACTION_UNINSTALL:
+        $success = false;
 
+        /* remove sample content page */
+        $resource = $object->xpdo->getObject('modResource',array(
+            'pagetitle' => 'FAQ Content',
+        ));
+        if ($resource != null) {
+            $resource->remove();
+        } else {
+            $object->xpdo->log(XPDO_LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the FAQ page manually</b><br />");
+        }
+
+        /* remove sample faq page */
+        $resource = $object->xpdo->getObject('modResource',array(
+            'pagetitle' => 'Sample FAQ Page',
+        ));
+        if ($resource != null) {
+            $resource->remove();
+        } else {
+            $object->xpdo->log(XPDO_LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the FAQ Content page manually</b><br />");
+        }
+
+
+        $success = true;
+        break;
 }
 return $success;
-?>

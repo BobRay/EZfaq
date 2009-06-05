@@ -21,9 +21,11 @@ $root = dirname(dirname(__FILE__)).'/';
 
 $sources= array (
     'root' => $root,
-    'build' => $root . '/_build/',
-    'lexicon' => $root . '/_build/lexicon/',
-    'docs' => $root . '/ezfaq/docs/',
+    'build' => $root . '_build/',
+    'docs' => $root . 'core/components/ezfaq/docs/',
+    'lexicon' => $root . 'core/components/ezfaq/lexicon/',
+    'source_assets' => $root.'assets/components/ezfaq',
+    'source_core' => $root.'core/components/ezfaq',
 );
 
 /* This example assumes that you are creating one element with one namespace, a lexicon, and one file resolver.
@@ -38,14 +40,16 @@ $element_namespace = 'ezfaq';    /* lexicon namespace for your add-on */
 $element_name = 'EZfaq';         /* name of your element as it will appear in the Manager */
 $element_object_type = 'modSnippet';   /* What is it?  modSnippet, modChunk, modPlugin, etc. */
 $element_type = 'snippet';   /* What is it without the "mod" */
-$element_description = 'EZfaq 3.0.8-beta1 -  Generates a FAQ page for your site.'; /* description field in the element's editing page */
-$element_source_file = $sources['root'] . 'ezfaq/snippet.ezfaq.php'; /* Where's the file PB will use to create the element */
+$element_description = 'EZfaq 3.0.8-beta2 -  Generates a FAQ page for your site.'; /* description field in the element's editing page */
+$element_source_file = $sources['source_core'] . '/snippet.ezfaq.php'; /* Where's the file PB will use to create the element */
 $element_category = 0;  /* the category of the element */
 $package_name = 'ezfaq';  /* The name of the package as it will appear in Workspaces will be this plus the next two variables */
 $package_version = '3.0.8';
-$package_release = 'beta1';
-$resolver_source = $sources['root'] . 'ezfaq';   /* Files in this directory will be packaged */
-$resolver_target = "return MODX_ASSETS_PATH . 'components/';"; /* Those files will go here */
+$package_release = 'beta2';
+$assets_resolver_source = $sources['source_assets'];   /* Files in this directory will be packaged */
+$assets_resolver_target = "return MODX_ASSETS_PATH . 'components/';"; /* Those files will go here */
+$core_resolver_source = $sources['source_core'];   /* Files in this directory will be packaged */
+$core_resolver_target = "return MODX_CORE_PATH . 'components/';"; /* Those files will go here */
 
 
 /* Note that for file resolvers, the named directory itself is also packaged.
@@ -96,15 +100,26 @@ $vehicle = $builder->createVehicle($c, $attributes);
 
 $modx->log(MODX_LOG_LEVEL_INFO,"Creating Resolver<br />");
 
-if (!is_dir($resolver_source)) {
-    $modx->log(MODX_LOG_LEVEL_FATAL,"<b>Error</b> - Resolver source directory not found: {$resolver_source}<br />");
+if (!is_dir($core_resolver_source)) {
+    $modx->log(MODX_LOG_LEVEL_FATAL,"<b>Error</b> - Core resolver source directory not found: {$core_resolver_source}<br />");
 }
-$modx->log(MODX_LOG_LEVEL_INFO,"Source: {$resolver_source}<br />");
-$modx->log(MODX_LOG_LEVEL_INFO,"Target: {$resolver_target}<br /><br />");
+$modx->log(MODX_LOG_LEVEL_INFO,"Source: {$core_resolver_source}<br />");
+$modx->log(MODX_LOG_LEVEL_INFO,"Target: {$core_resolver_target}<br /><br />");
 
 $vehicle->resolve('file',array(
-    'source' => $resolver_source,
-    'target' => $resolver_target,
+    'source' => $core_resolver_source,
+    'target' => $core_resolver_target,
+));
+
+if (!is_dir($assets_resolver_source)) {
+    $modx->log(MODX_LOG_LEVEL_FATAL,"<b>Error</b> - Assets resolver source directory not found: {$assets_resolver_source}<br />");
+}
+$modx->log(MODX_LOG_LEVEL_INFO,"Source: {$assets_resolver_source}<br />");
+$modx->log(MODX_LOG_LEVEL_INFO,"Target: {$assets_resolver_target}<br /><br />");
+
+$vehicle->resolve('file',array(
+    'source' => $assets_resolver_source,
+    'target' => $assets_resolver_target,
 ));
 
 /* Create the php resolver to install the sample FAQ */
@@ -120,7 +135,9 @@ $builder->putVehicle($vehicle);
 $builder->setPackageAttributes(array(
     'license' => file_get_contents($sources['docs'] . 'license.txt'),
     'readme' => file_get_contents($sources['docs'] . 'readme.txt'),
-    'setup-options' => file_get_contents($sources['build'] . 'user_input.html')
+    'setup-options' => array(
+        'source' => $sources['build'].'user_input.php',
+    ),
 ));
 
 /* load lexicon strings */
