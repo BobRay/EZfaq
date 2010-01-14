@@ -9,11 +9,12 @@ $sources= array (
 $default_template = $object->xpdo->getOption('default_template');
 
 $success = false;
-switch($options[XPDO_TRANSPORT_PACKAGE_ACTION]) {
-    case XPDO_TRANSPORT_ACTION_INSTALL:
+$object->xpdo->log(xPDO::LOG_LEVEL_INFO,'Running PHP Resolver.');
+switch($options[xPDOTransport::PACKAGE_ACTION]) {
+    case xPDOTransport::ACTION_INSTALL:
         $install_sample = $object->xpdo->getOption('install_sample',$options,'No');
         if ($install_sample == 'Yes') {
-            $object->xpdo->log(XPDO_LOG_LEVEL_INFO,"Creating resource: Sample FAQ Page<br />");
+            $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"Creating resource: Sample FAQ Page<br />");
             $r = $object->xpdo->newObject('modResource');
             $r->set('class_key','modResource');
             $r->set('context_key','web');
@@ -40,7 +41,7 @@ switch($options[XPDO_TRANSPORT_PACKAGE_ACTION]) {
             $faqId = $r->get('id');  /* need this to set content page parent */
 
             /* now create FAQ content page */
-            $object->xpdo->log(XPDO_LOG_LEVEL_INFO,"<br>Creating resource: FAQ Contents<br />");
+            $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"<br>Creating resource: FAQ Contents<br />");
             $r = $object->xpdo->newObject('modResource');
 
             $r->set('class_key','modResource');
@@ -76,11 +77,11 @@ switch($options[XPDO_TRANSPORT_PACKAGE_ACTION]) {
         $success = true;
         break;
 
-    case XPDO_TRANSPORT_ACTION_UPGRADE:
+   case xPDOTransport::ACTION_UPGRADE:
         $success = true;
         break;
 
-    case XPDO_TRANSPORT_ACTION_UNINSTALL:
+    case xPDOTransport::ACTION_UNINSTALL:
         $success = false;
 
         /* remove sample content page */
@@ -90,7 +91,7 @@ switch($options[XPDO_TRANSPORT_PACKAGE_ACTION]) {
         if ($resource != null) {
             $resource->remove();
         } else {
-            $object->xpdo->log(XPDO_LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the FAQ page manually</b><br />");
+            $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the FAQ page manually</b><br />");
         }
 
         /* remove sample faq page */
@@ -100,7 +101,7 @@ switch($options[XPDO_TRANSPORT_PACKAGE_ACTION]) {
         if ($resource != null) {
             $resource->remove();
         } else {
-            $object->xpdo->log(XPDO_LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the FAQ Content page manually</b><br />");
+            $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the FAQ Content page manually</b><br />");
         }
 
 

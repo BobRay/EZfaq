@@ -1,5 +1,10 @@
 EZfaq Change Log
 ----------------
+
+3.1 (beta3)
+---
+Updated for Revolution beta-5
+
 3.0.8
 -----
 Corrected minor bugs in sample content

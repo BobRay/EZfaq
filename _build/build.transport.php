@@ -3,8 +3,8 @@
  * EZFaq Build Script
  *
  * @name EZFaq
- * @version 3.0.8
- * @release beta
+ * @version 3.1
+ * @release beta3
  * @author BobRay <bobray@softville.com>
  */
 $mtime = microtime();
@@ -40,12 +40,12 @@ $element_namespace = 'ezfaq';    /* lexicon namespace for your add-on */
 $element_name = 'EZfaq';         /* name of your element as it will appear in the Manager */
 $element_object_type = 'modSnippet';   /* What is it?  modSnippet, modChunk, modPlugin, etc. */
 $element_type = 'snippet';   /* What is it without the "mod" */
-$element_description = 'EZfaq 3.0.8-beta2 -  Generates a FAQ page for your site.'; /* description field in the element's editing page */
+$element_description = 'EZfaq 3.1-beta3 -  Generates a FAQ page for your site.'; /* description field in the element's editing page */
 $element_source_file = $sources['source_core'] . '/snippet.ezfaq.php'; /* Where's the file PB will use to create the element */
 $element_category = 0;  /* the category of the element */
 $package_name = 'ezfaq';  /* The name of the package as it will appear in Workspaces will be this plus the next two variables */
-$package_version = '3.0.8';
-$package_release = 'beta2';
+$package_version = '3.1';
+$package_release = 'beta3';
 $assets_resolver_source = $sources['source_assets'];   /* Files in this directory will be packaged */
 $assets_resolver_target = "return MODX_ASSETS_PATH . 'components/';"; /* Those files will go here */
 $core_resolver_source = $sources['source_core'];   /* Files in this directory will be packaged */
@@ -67,7 +67,7 @@ require_once (MODX_CORE_PATH . 'model/modx/modx.class.php');
 $modx= new modX();
 $modx->initialize('mgr');
 echo '<pre>'; /* used for nice formatting for log messages */
-$modx->setLogLevel(MODX_LOG_LEVEL_INFO);
+$modx->setLogLevel(modX::LOG_LEVEL_INFO);
 $modx->setLogTarget('ECHO');
 /* $modx->setDebug(true); */
 
@@ -77,9 +77,9 @@ $builder->createPackage($package_name,$package_version,$package_release);
 $builder->registerNamespace($element_namespace,false,true);
 
 if (!file_exists($element_source_file)) {
-    $modx->log(MODX_LOG_LEVEL_FATAL,"<b>Error</b> - Element source file not found: {$element_source_file}<br />");
+    $modx->log(modX::LOG_LEVEL_FATAL,"<b>Error</b> - Element source file not found: {$element_source_file}<br />");
 }
-$modx->log(MODX_LOG_LEVEL_INFO,"Creating element from source file: {$element_source_file}<br />");
+$modx->log(modX::LOG_LEVEL_INFO,"Creating element from source file: {$element_source_file}<br />");
 
 /* get the source from the actual element in your database OR
  manually create the object, grabbing the source from a file
@@ -93,18 +93,18 @@ $c->set($element_type, file_get_contents($element_source_file));
 
 /* create a transport vehicle for the data object */
 $attributes= array(
-    XPDO_TRANSPORT_UNIQUE_KEY => 'name',
-    XPDO_TRANSPORT_UPDATE_OBJECT => true,
+    xPDOTransport::UNIQUE_KEY => 'name',
+    xPDOTransport::UPDATE_OBJECT => true,
 );
 $vehicle = $builder->createVehicle($c, $attributes);
 
-$modx->log(MODX_LOG_LEVEL_INFO,"Creating Resolver<br />");
+$modx->log(modX::LOG_LEVEL_INFO,"Creating Resolver<br />");
 
 if (!is_dir($core_resolver_source)) {
-    $modx->log(MODX_LOG_LEVEL_FATAL,"<b>Error</b> - Core resolver source directory not found: {$core_resolver_source}<br />");
+    $modx->log(modX::LOG_LEVEL_FATAL,"<b>Error</b> - Core resolver source directory not found: {$core_resolver_source}<br />");
 }
-$modx->log(MODX_LOG_LEVEL_INFO,"Source: {$core_resolver_source}<br />");
-$modx->log(MODX_LOG_LEVEL_INFO,"Target: {$core_resolver_target}<br /><br />");
+$modx->log(modX::LOG_LEVEL_INFO,"Source: {$core_resolver_source}<br />");
+$modx->log(modX::LOG_LEVEL_INFO,"Target: {$core_resolver_target}<br /><br />");
 
 $vehicle->resolve('file',array(
     'source' => $core_resolver_source,
@@ -112,10 +112,10 @@ $vehicle->resolve('file',array(
 ));
 
 if (!is_dir($assets_resolver_source)) {
-    $modx->log(MODX_LOG_LEVEL_FATAL,"<b>Error</b> - Assets resolver source directory not found: {$assets_resolver_source}<br />");
+    $modx->log(modX::LOG_LEVEL_FATAL,"<b>Error</b> - Assets resolver source directory not found: {$assets_resolver_source}<br />");
 }
-$modx->log(MODX_LOG_LEVEL_INFO,"Source: {$assets_resolver_source}<br />");
-$modx->log(MODX_LOG_LEVEL_INFO,"Target: {$assets_resolver_target}<br /><br />");
+$modx->log(modX::LOG_LEVEL_INFO,"Source: {$assets_resolver_source}<br />");
+$modx->log(modX::LOG_LEVEL_INFO,"Target: {$assets_resolver_target}<br /><br />");
 
 $vehicle->resolve('file',array(
     'source' => $assets_resolver_source,
@@ -153,6 +153,6 @@ $tend= $mtime;
 $totalTime= ($tend - $tstart);
 $totalTime= sprintf("%2.4f s", $totalTime);
 
-$modx->log(MODX_LOG_LEVEL_INFO,"Package completed.<br />Execution time: {$totalTime}<br>");
+$modx->log(modX::LOG_LEVEL_INFO,"Package completed.<br />Execution time: {$totalTime}<br>");
 
 exit ();

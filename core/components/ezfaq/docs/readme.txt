@@ -5,7 +5,7 @@
 File: Readme.txt
 Snippet: EZfaq
 $Revision: 29 $
-$Date: 2008-09-29 16:05:10 -0700 (Tue, 22 Sep 2008) $
+$Date: 2010-01-14 $
 Compatibility: MODx Revolution
 
 Author: Bob Ray (based on an idea from SorenG and JavaScript code from DynamicDrive.com)
