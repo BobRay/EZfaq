@@ -169,7 +169,7 @@ $showHideAllOption = $modx->getOption('showHideAllOption',$scriptProperties,true
 
 /* Set prefix markers for open and closed answers (can be string or an image URL). Defaults to plus and minus signs. */
 $statusOpenHTML = $modx->getOption('statusOpenHTML',$scriptProperties,'[-]');
-$statusClosedHTML = $modx->getOption('statusOpenHTML',$scriptProperties,'[+]');
+$statusClosedHTML = $modx->getOption('statusClosedHTML',$scriptProperties,'[+]');
 
 /* Set colors for open and closed (applies to question; answer is styled in .css). Can be color name or hex color value (#ffffff); */
 $openColor = $modx->getOption('openColor',$scriptProperties,'red');
