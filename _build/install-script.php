@@ -13,6 +13,11 @@ $object->xpdo->log(xPDO::LOG_LEVEL_INFO,'Running PHP Resolver.');
 switch($options[xPDOTransport::PACKAGE_ACTION]) {
     case xPDOTransport::ACTION_INSTALL:
         $install_sample = $object->xpdo->getOption('install_sample',$options,'No');
+        if ($object->xpdo->getObject('modResource',array('pagetitle'=>'Sample FAQ Page'))) {
+            /* don't install resources if they're already there */
+            $success = true;
+            break;
+        }
         if ($install_sample == 'Yes') {
             $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"Creating resource: Sample FAQ Page<br />");
             $r = $object->xpdo->newObject('modResource');
