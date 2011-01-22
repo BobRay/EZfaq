@@ -125,7 +125,7 @@ $vehicle->resolve('file',array(
 /* Create the php resolver to install the sample FAQ */
 $vehicle->resolve('php',array(
             'type' => 'php',
-            'source' => $sources['build'] . "install-script.php",
+            'source' => $sources['build'] . "install.script.php",
             'target' => "return '" . $sources['build'] . "';"
 
         ));
@@ -136,12 +136,9 @@ $builder->setPackageAttributes(array(
     'license' => file_get_contents($sources['docs'] . 'license.txt'),
     'readme' => file_get_contents($sources['docs'] . 'readme.txt'),
     'setup-options' => array(
-        'source' => $sources['build'].'user_input.php',
+        'source' => $sources['build'].'user.input.php',
     ),
 ));
-
-/* load lexicon strings */
-$builder->buildLexicon($sources['lexicon']);
 
 /* zip up the package */
 $builder->pack();
