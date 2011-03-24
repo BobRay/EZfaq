@@ -1,5 +1,10 @@
 EZfaq Change Log
 ----------------
+
+3.2.3
+-----
+Fixed bug with namespace registration
+
 3.2.2
 -----
 Fixed bug in Transport Package

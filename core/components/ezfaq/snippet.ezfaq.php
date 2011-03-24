@@ -2,8 +2,8 @@
 /**
  * @package ezfaq
  * @author Bob Ray <bobray@softville.com>
- * @created 09-27-2008
- * @version 3.2.2
+ * @created 03-23-2011
+ * @version 3.2.3
  * @release beta1
 */
 /*
