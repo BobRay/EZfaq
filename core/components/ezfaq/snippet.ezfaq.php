@@ -74,7 +74,7 @@ Q:What is Sigmund Freud's middle name?
 A:Schlomo
 
 (etc.)
-Q:END-FAQ
+Q:FAQ-END
 
 Work in progress can go here and won't be displayed. (optional)
 
@@ -240,7 +240,7 @@ foreach($docArray as $value) {
         /* normal item, continue */
     }
   $items = explode("A:",$value);
-      if (stristr($items[0],"FAQ-END")) {
+      if (stristr($items[0],"FAQ-END")|| stristr($items[0],"END-FAQ")) {
          break;
       }
 
