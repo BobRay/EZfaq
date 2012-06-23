@@ -20,12 +20,12 @@ Thanks to: jaredc for suggestions on .css usage and cssPath parameter
 Minimal EZfaq call:
 -------------------
 
-[[!EZfaq? &docID=`12`]]
+[[!EZfaq? &ezfaqDocID=`12`]]
 
 (Use the document ID of your unpublished FAQ content document
 -- NOT THE DOCUMENT THAT *DISPLAYS* THE FAQ --.)
 
-&docID is required.
+&ezfaqDocID is required.
 
 Optional parameters:
 --------------------
@@ -91,7 +91,7 @@ check.png        x.png
 
 Image URL full example:
 
-[[EZfaq? &docID=`12` &statusOpenHTML=`<img srcEQUALS"assets/components/ezfaq/images/minus.png">` &statusClosedHTML=`<img srcEQUALS"assets/components/ezfaq/images/plus.png">`]]
+[[EZfaq? &ezfaqDocID=`12` &statusOpenHTML=`<img srcEQUALS"assets/components/ezfaq/images/minus.png">` &statusClosedHTML=`<img srcEQUALS"assets/components/ezfaq/images/plus.png">`]]
 
 
 Styling EZfaq
@@ -134,11 +134,11 @@ $modx->lexicon->load('ezfaq:default');
 Make sure we have what we need before proceeding
 ***********************************************/
 
-if (!isset($docID)) { /* User didn't send docID parameter */
+if (!isset($ezfaqDocID)) { /* User didn't send docID parameter */
     return $modx->lexicon('ezfaq-docID-required');
 }
 
-$resource = $modx->getObject('modResource',$docID);
+$resource = $modx->getObject('modResource',$ezfaqDocID);
 if ($resource == null) { /* user requested a non-existing document */
    return $modx->lexicon('ezfaq-doc-not-found');
 }
