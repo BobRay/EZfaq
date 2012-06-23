@@ -46,7 +46,7 @@ Optional parameters:
 
 &defaultExpanded  [expand answers n1 through n2 ("0,1" expands items 1 through 2)when page is opened (default, no)]
 
-&cssPath [Optional URL to .css file -- set to `` for no .css file]
+&ezfaqCssPath [Optional URL to .css file -- set to `` for no .css file]
 
 &faqPath [URL to the EZfaq directory] - default /assets/components/ezfaq
 
@@ -117,7 +117,8 @@ A:<a href="http://domain.com/assets/images/small-pic.jpg" rel="lightbox"><img sr
 ***************************************************
 *             Code begins here                    *
 ***************************************************/
-
+/* @var $scriptProperties array */
+/* @var $modx modX */
 
 /* set path to resources */
 $faqPath = $modx->getOption('faqPath',$scriptProperties,$modx->getOption('base_url') . 'assets/components/ezfaq/');
@@ -151,7 +152,7 @@ content, we'll plug in the .css and .js and  initialize the optional parameters.
     Use $cssPath=`` if you want to put the .css in your site's .css file
     rather than using a separate .css file for the FAQ  */
 
-$cssPath = $modx->getOption('cssPath',$scriptProperties,'');
+$cssPath = $modx->getOption('ezfaqCssPath',$scriptProperties,'');
 
 if (!empty($cssPath)) {    /* user has set this parameter */
     /* user has specified the .css file to use */
@@ -240,11 +241,11 @@ foreach($docArray as $value) {
         /* normal item, continue */
     }
   $items = explode("A:",$value);
-      if (stristr($items[0],"FAQ-END")|| stristr($items[0],"END-FAQ")) {
+      if ( (isset($items[0]) && stristr($items[0],"FAQ-END") ) || stristr($items[0],"END-FAQ")) {
          break;
       }
 
-  if ( ($items[0] != "") && ($items[1] != "") ) {
+  if ( (isset($items[0]) && $items[0] != "") && (isset($items[1]) && $items[1] != "") ) {
 
      $output .= '<p id="faq'.$itemCount.'-title" class="handcursor">';
      $output .= '<span class="faqQuestion">';
@@ -256,7 +257,7 @@ foreach($docArray as $value) {
      $output .= $aArray[0];
      $output .= '</div>';
 
-     if ($aArray[1] != "") {
+     if ( isset($aArray[1]) && ($aArray[1] != "")) {
        $output .= $aArray[1];
      }
 
