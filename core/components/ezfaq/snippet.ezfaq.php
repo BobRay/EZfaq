@@ -3,8 +3,6 @@
  * @package ezfaq
  * @author Bob Ray <bobray@softville.com>
  * @created 03-23-2011
- * @version 3.2.3
- * @release beta1
 */
 /*
 (based on an idea from SorenG and JavaScript code from DynamicDrive.com)

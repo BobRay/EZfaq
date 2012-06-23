@@ -1,6 +1,15 @@
 EZfaq Change Log
 ----------------
 
+3.3.0-pl
+--------
+Renamed properties to avoid conflicts
+  cssPath -> ezfaqCssPath
+  docID -> ezfaqDocID
+Tweaks to CSS
+Code cleanup
+Added readme.md
+
 3.2.3
 -----
 Fixed bug with namespace registration
