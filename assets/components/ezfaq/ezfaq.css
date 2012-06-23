@@ -32,7 +32,7 @@ Compatibility: MODx Revolution
 .faqExpand a {     /* show/hide all "button" */
     text-decoration:none;
     color:#000000;
-    background-color:#FFCC00;
+    background-color:#DDDDDD;
     padding:5px;
     margin:5px;
     border: 1px solid #000000;
