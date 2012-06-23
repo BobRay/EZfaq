@@ -1,3 +1,4 @@
+EZfaq Snippet
 
 Author: Bob Ray (based on an idea from SorenG and JavaScript code from DynamicDrive.com)
 
