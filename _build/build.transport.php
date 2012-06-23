@@ -3,7 +3,7 @@
  * EZFaq Build Script
  *
  * @name EZFaq
- * @release beta1
+ *
  * @author BobRay <bobray@softville.com>
  */
 $mtime = microtime();
@@ -12,11 +12,6 @@ $mtime = $mtime[1] + $mtime[0];
 $tstart = $mtime;
 
 $root = dirname(dirname(__FILE__)).'/';
-
-/*  Uncomment the next line if you need to debug the setting above after checkout */
-
-/* die("ROOT: " . $root); */
-
 
 $sources= array (
     'root' => $root,
@@ -27,48 +22,32 @@ $sources= array (
     'source_core' => $root.'core/components/ezfaq',
 );
 
-/* This example assumes that you are creating one element with one namespace, a lexicon, and one file resolver.
-*  You'll need to modify it if your situation is different. A snippet with no support files (no images, no css, no js includes, etc.) doesn't need a file
-*  resolver so you can comment out that part of the code. If you have no lexicon, you can comment out that part of the code. If you need to create multiple
-*  elements (e.g. a snippet, several chunks, and maybe a plugin) you can do it all in this file, but you'll have to duplicate the code below that creates
-*  and packages the element. You'll also have to reset the variables for each segment. If you put all your support files in or below in a single
-*  directory, you'll only need one file resolver.
-*/
-
-$element_namespace = 'ezfaq';    /* lexicon namespace for your add-on */
-$element_name = 'EZfaq';         /* name of your element as it will appear in the Manager */
-$element_object_type = 'modSnippet';   /* What is it?  modSnippet, modChunk, modPlugin, etc. */
-$element_type = 'snippet';   /* What is it without the "mod" */
-$element_description = 'EZfaq 3.2.3-beta1 -  Generates a FAQ page for your site.'; /* description field in the element's editing page */
-$element_source_file = $sources['source_core'] . '/snippet.ezfaq.php'; /* Where's the file PB will use to create the element */
-$element_category = 0;  /* the category of the element */
-$package_name = 'ezfaq';  /* The name of the package as it will appear in Workspaces will be this plus the next two variables */
+$element_namespace = 'ezfaq';
+$element_name = 'EZfaq';
+$element_object_type = 'modSnippet';
+$element_type = 'snippet';
+$element_description = 'EZfaq 3.2.3-beta1 -  Generates a FAQ page for your site.';
+$element_source_file = $sources['source_core'] . '/snippet.ezfaq.php';
+$element_category = 0;
+$package_name = 'ezfaq';
 $package_version = '3.2.3';
 $package_release = 'beta1';
-$assets_resolver_source = $sources['source_assets'];   /* Files in this directory will be packaged */
-$assets_resolver_target = "return MODX_ASSETS_PATH . 'components/';"; /* Those files will go here */
-$core_resolver_source = $sources['source_core'];   /* Files in this directory will be packaged */
-$core_resolver_target = "return MODX_CORE_PATH . 'components/';"; /* Those files will go here */
+$assets_resolver_source = $sources['source_assets'];
+$assets_resolver_target = "return MODX_ASSETS_PATH . 'components/';";
+$core_resolver_source = $sources['source_core'];
+$core_resolver_target = "return MODX_CORE_PATH . 'components/';";
 
-
-/* Note that for file resolvers, the named directory itself is also packaged.
-*  So the two lines above will copy the ezfaq dir and its contents
-*  to the assets/components/ directory in the target install.
-*/
-
-/* get rid of time limit */
 set_time_limit(0);
 
-/* override with your own defines here (see build.config.sample.php) */
 require_once dirname(__FILE__).'/build.config.php';
 
 require_once (MODX_CORE_PATH . 'model/modx/modx.class.php');
 $modx= new modX();
 $modx->initialize('mgr');
-echo '<pre>'; /* used for nice formatting for log messages */
+echo '<pre>';
 $modx->setLogLevel(modX::LOG_LEVEL_INFO);
 $modx->setLogTarget('ECHO');
-/* $modx->setDebug(true); */
+
 
 $modx->loadClass('transport.modPackageBuilder','',false, true);
 $builder = new modPackageBuilder($modx);
@@ -79,11 +58,7 @@ if (!file_exists($element_source_file)) {
     $modx->log(modX::LOG_LEVEL_FATAL,"<b>Error</b> - Element source file not found: {$element_source_file}<br />");
 }
 $modx->log(modX::LOG_LEVEL_INFO,"Creating element from source file: {$element_source_file}<br />");
-
-/* get the source from the actual element in your database OR
- manually create the object, grabbing the source from a file
- */
-
+/* @var $c modElement */
 $c= $modx->newObject($element_object_type);
 $c->set('name', $element_name);
 $c->set('description', $element_description);
