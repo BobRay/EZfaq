@@ -1,19 +1,34 @@
 <p>
-I've chosen this as one of the first snippet tutorials because EZfaq is one of the easiest snippets to use. EZfaq creates a slick, attractive, FAQ page with expanding and contracting answers like the one <a href="[~31~]" title="MODx FAQ">here</a>. 
+I've chosen this as one of the first snippet tutorials because EZfaq is one of the easiest snippets to use. EZfaq creates a slick, attractive, FAQ page with expanding and contracting answers like the one <a href="[[~31]]" title="MODx FAQ">here</a>. 
 </p>
+
+<div class="box">
+    <p>Upgrade note: The property for specifying the CSS path (<fixedpre>&cssPath</fixedpre>) has been changed to <fixedpre>&ezfaqCssPath</fixedpre> and the <fixedpre>&docID</fixedpre> property has been changed to <fixedpre>&ezfaqDocID</fixedpre>. This was done to avoid potential conflicts with other components.</p>
+</div>
 <h3>Installing EZfaq for MODx Revolution 2.0.0 and Beyond</h3>
 <p>
-This couldn't be much easier. Just go to System | Package Management on the main menu in the MODx Manager and click on the "Download Extras" button. That will take you to the Revolution Repository (AKA Web Transport Facility). Find the EZfaq snippet and put a check next to it (it should be under "Content," but the last time I looked it was misfiled in the Communication section). Check any other packages you might want to install and click on "Finish."  That should bring you back to your Package Management grid. Right click on EZfaq and select "Install Package." The EZfaq snippet should now be installed.</p>
+    This couldn't be much easier. Just go to System | Package Management on the main menu in the MODx Manager and click on the "Download
+    Extras" button. That will take you to the Revolution Repository (AKA Web Transport Facility). Find the EZfaq snippet and put a check
+    next to it (it should be under "Content," but the last time I looked it was misfiled in the Communication section). Check any other
+    packages you might want to install and click on "Finish." That should bring you back to your Package Management grid. Right click on
+    EZfaq and select "Install Package." The EZfaq snippet should now be installed.
+</p>
 
-<p>If you chose to install the sample FAQ (highly recommended) you should see a Resource called FAQ and, under it, an unpublished resource called FAQ Content. You can follow along with the rest of this tutorial, but most of the work will have been done for you. You may want to change the Title, Longtitle, and alias of your FAQ document and, of course, you'll want to put your own content in the FAQ Content document (which you'll want to leave unpublished). Be sure to read the sections on Creating the FAQ Content Document, and Customizing the FAQ page.
+<p>If you chose to install the sample FAQ (highly recommended) you should see a Resource called FAQ and, under it, an unpublished resource
+    called FAQ Content. You can follow along with the rest of this tutorial, but most of the work will have been done for you. You may want
+    to change the Title, Longtitle, and alias of your FAQ document and, of course, you'll want to put your own content in the FAQ Content
+    document (which you'll want to leave unpublished). Be sure to read the sections on Creating the FAQ Content Document, and Customizing
+    the FAQ page.
 </p>
 
 <h3>Installing EZfaq for MODx Evolution and earlier</h3>
 <p>
-The first step is to go to the MODx Repository <a href="http://modxcms.com/extras/download/218/218">here</a> and download EZfaq.zip to your computer. 
+    The first step is to go to the MODx Repository <a href="http://modxcms.com/extras/download/218/218">here</a> and download EZfaq.zip to
+    your computer.
 </p>
 <p>
-Next, extract the contents of the EZfaq zip file to your assets/snippets directory. The files should end up in a directory called /assets/snippets/ezfaq. 
+    Next, extract the contents of the EZfaq zip file to your assets/snippets directory. The files should end up in a directory called
+    /assets/snippets/ezfaq.
 </p>
 <p>
 Make sure all the files are there. You should see this structure: 
@@ -41,7 +56,7 @@ Make sure all the files are there. You should see this structure:
 </ul>
 <h3>Creating the Main FAQ Page</h3>
 <p>
-Now let's create a page to display the FAQ items. Note that this page won't hold any of the FAQ content, just the snippet call that fetches them. 
+Now let's create a page to display the FAQ items. Note that this page won't hold any of the FAQ content, just the snippet tag that fetches them.
 </p>
 <p>
 Launch the <strong>MODx Manager</strong>, (log on with http://yoursite.com/manager). 
@@ -56,7 +71,8 @@ Fill in the fields on the document editing screen as follows:
 <img alt="ezfaq-image1" border="0" height="436" src="images/ezfaqtutorial1.png" width="493" /> 
 </p>
 <p>
-The Menu index number tells MODx where to show this document in the menu. If you'd like your FAQ to be at the end of your menu, for example, you can put 99 in the Menu index box. If you're not sure, don't worry, you can come back to this page and change it later. 
+    The Menu index number tells MODx where to show this document in the menu. If you'd like your FAQ to be at the end of your menu, for
+    example, you can put 99 in the Menu index box. If you're not sure, don't worry, you can come back to this page and change it later.
 </p>
 <p>
 Look at the top of the Create/edit document window (scroll up if you have to). You should see three tabs like the ones below: 
@@ -68,13 +84,19 @@ Look at the top of the Create/edit document window (scroll up if you have to). Y
 Click on the <strong>Page Settings</strong> tab. 
 </p>
 <p>
-This tab allows you to set some of the characteristics of the document we're creating. Check the <strong>Container</strong> checkbox. We're going to put the FAQ Content Document below this one in the tree. It could go anywhere, but putting it below this document will make it easy to find. 
+    This tab allows you to set some of the characteristics of the document we're creating. Check the <strong>Container</strong> checkbox.
+    We're going to put the FAQ Content Document below this one in the tree. It could go anywhere, but putting it below this document will
+    make it easy to find.
 </p>
 <p>
-The <strong>Published</strong> checkbox determines whether visitors to your site will see the document or not. You might want to leave it unchecked until you're done creating the FAQ content. If you leave it unchecked, you'll have to come back here and check it to make the page visible to visitors. If you don't care if people see the unfinished page, you can check it now. 
+    The <strong>Published</strong> checkbox determines whether visitors to your site will see the document or not. You might want to leave
+    it unchecked until you're done creating the FAQ content. If you leave it unchecked, you'll have to come back here and check it to make
+    the page visible to visitors. If you don't care if people see the unfinished page, you can check it now.
 </p>
 <p>
-Notice also, the <strong>Published date</strong> and <strong>Unpublished date</strong> boxes. If you'd like to have a page appear and/or disappear from the site, you can put dates in these boxes by clicking on the little calendar icon next to each box. You can try these now if you like. You can remove the date by clicking on the other calendar icon (the one with the red circle and slash over it). 
+    Notice also, the <strong>Published date</strong> and <strong>Unpublished date</strong> boxes. If you'd like to have a page appear and/or
+    disappear from the site, you can put dates in these boxes by clicking on the little calendar icon next to each box. You can try these
+    now if you like. You can remove the date by clicking on the other calendar icon (the one with the red circle and slash over it).
 </p>
 <p>
 Make sure the <strong>Show in menu</strong> checkbox is checked.
@@ -82,104 +104,163 @@ Make sure the <strong>Show in menu</strong> checkbox is checked.
 <p>
 Next, scroll down to the <strong>Document content</strong> window and paste in the following line: 
 </p>
-<p>
-[<!-- -->[EZfaq? &amp;docID=`##`]<!-- -->] 
-</p>
+
+<pre><fixedpre>
+[[EZfaq? &ezfaqDocID=`##`]]
+</fixedpre></pre>
+
 <p>
 The &quot;##&quot; is just temporary. We'll replace it with the actual document ID of the FAQ contents document, once we know what it is. 
 </p>
 <p>
 Now, scroll up to the top of the page and click on <strong>Save</strong>. 
 </p>
+
 <h3>Creating the EZfaq Snippet</h3>
+
 <p>Now we'll create the actual snippet that displays the FAQ by creating a new snippet in the Manager and pasting in the EZfaq code.</p>
-<p>In the MODx Manager, create a new snippet (Resources | Manage Resources | Snippets | New Snippet). Use EZfaq for the name of the snippet. Be careful how you spell it, snippet names are case-sensitive and must be spelled exactly the same way in the snippet name and the snippet call you place in a MODx document.</p>
+
+<p>In the MODx Manager, create a new snippet (Resources | Manage Resources | Snippets | New Snippet). Use EZfaq for the name of the snippet.
+    Be careful how you spell it, snippet names are case-sensitive and must be spelled exactly the same way in the snippet name and the
+    snippet tag you place in a MODx document.
+</p>
+
 <p>To fill the content of the snippet, there are two ways to go. The first is the most foolproof:</p>
 <ol>
 <li>Find the ezfaq.inc.php file (in the /assets/snippets/ezfaq directory). Highlight the code in that file and copy it into the body of the snippet you just created. Click on "Save."</li>
-<li>Put the following in the body of the new snippet and save it:<br>
-<pre>
-&lt;?php
-include assets/snippets/ezfaq/ezfaq.inc.php
-?&gt;</pre>
+<li>Put the following in the body of the new snippet and save it:</li>
 </ol>
+<pre><fixedpre>
+    <?php
+    include assets/snippets/ezfaq/ezfaq.inc.php
+    ?>
+</fixedpre></pre>
+
+
+
 <h3>Creating the FAQ Content Document</h3>
 <p>
-If we looked at our FAQ page now, there'd be nothing to see because we haven't created any content for it yet. We just created a document using one method. In MODx, there are often several ways to accomplish the same thing. Now we'll create a new document using another method. 
+    If we looked at our FAQ page now, there'd be nothing to see because we haven't created any content for it yet. We just created a
+    document using one method. In MODx, there are often several ways to accomplish the same thing. Now we'll create a new document using
+    another method.
 </p>
 <p>
-Find the FAQ page you just created in the Resource tree at the left of the screen. Right-click on it and select <strong>Create new document here</strong>. This will take you to a new Create/edit Document screen. This new document we're creating will hold the actual content of the FAQ. 
+    Find the FAQ page you just created in the Resource tree at the left of the screen. Right-click on it and select <strong>Create new
+    document here</strong>. This will take you to a new Create/edit Document screen. This new document we're creating will hold the actual
+    content of the FAQ.
 </p>
+
 <p>
 Fill in the fields to match the screen shot below: 
 </p>
+
 <p>
 <img alt="ezfaqtutorial image3" border="0" height="382" src="images/ezfaqtutorial3.png" width="467" /> 
 </p>
+
 <p>
-Be sure that the <strong>Show in menu</strong> checkbox is <strong>not</strong> checked. You don't want to show people the raw FAQ, you want to have it displayed by the EZfaq snippet we put on the other page. 
+    Be sure that the <strong>Show in menu</strong> checkbox is <strong>not</strong> checked. You don't want to show people the raw FAQ, you
+    want to have it displayed by the EZfaq snippet we put on the other page.
 </p>
+
 <p>
-Now scroll up and select the <strong>Page Settings</strong> tab as you did before and make sure the <strong>Published</strong> checkbox is unchecked so this page can't be viewed directly. 
+    Now scroll up and select the <strong>Page Settings</strong> tab as you did before and make sure the <strong>Published</strong> checkbox
+    is unchecked so this page can't be viewed directly. Uncheck the <strong>Searchable</strong> checkbox &mdash; you don't want this page to
+    show in site maps of site searches.
 </p>
+
 <p>
-Scroll back down so you can enter the content of the FAQ. EZfaq makes this really easy. All you have to do is enter a series of questions and answers like these: 
+    Scroll back down so you can enter the content of the FAQ. EZfaq makes this really easy. All you have to do is enter a series of
+    questions and answers like these:
 </p>
+
 <p>
 <img alt="ezfaqtutorial-image4" border="0" height="257" src="images/ezfaqtutorial4.png" width="390" /> 
 </p>
+
 <p>
-Make sure that the list starts with Q: and that there is an A: for every Q:. Use capital letters for the Q: and A: and don't forget the colons, they're important. Notice that there is no space after the colon, EZfaq will take care of the spacing. Be sure your list ends with Q:END-FAQ with no spaces and all caps. That tells EZfaq that it's the end of the part you want to dispay. You can use the questions and answers above or create your own, but don't try to paste the ones above into your new page because the ones here are an image rather than text, so they can't be cut and pasted. 
+    Make sure that the list starts with Q: and that there is an A: for every Q:. Use capital letters for the Q: and A: and don't forget the
+    colons, they're important. Notice that there is no space after the colon, EZfaq will take care of the spacing. Be sure your list ends
+    with Q:FAQ-END with no spaces and all caps. That tells EZfaq that it's the end of the part you want to dispay. You can use the questions
+    and answers above or create your own, but don't try to paste the ones above into your new page because the ones here are an image rather
+    than text, so they can't be cut and pasted.
 </p>
+
 <p>
-When you're finished adding your questions and answers, scroll up to the top of the page and click on <strong>Save</strong>. Take a look at the Resource tree at the left. You should see your main FAQ page and, under it, the FAQ content page we just created. The FAQ content page should be grayed out because it's not published. Make a note of the document ID of the FAQ content page (the number in parentheses next to the page name). We'll be using it in just a minute. 
+    When you're finished adding your questions and answers, scroll up to the top of the page and click on <strong>Save</strong>. Take a look
+    at the Resource tree at the left. You should see your main FAQ page and, under it, the FAQ content page we just created. The FAQ content
+    page should be grayed out because it's not published. Make a note of the document ID of the FAQ content page (the number in parentheses
+    next to the page name). We'll be using it in just a minute.
 </p>
+
 <p>
-If you left the main FAQ page unpublished, go back now and publish it and correct the ID parameter in the snippet call. Be sure you're publishing the main FAQ page (the one with the snippet call on it) not the FAQ content document we just created. To publish the main FAQ page, right-click on it in the Resource tree and select <strong>Edit document</strong> from the list that appears. 
+    If you left the main FAQ page unpublished, go back now and publish it and correct the <fixedpre>&ezfaqDocID</fixedpre> property in the snippet tag. Be sure you're
+    publishing the main FAQ page (the one with the snippet tag on it) not the FAQ content document we just created. To publish the main FAQ
+    page, right-click on it in the Resource tree and select <strong>Edit document</strong> from the list that appears.
 </p>
+
 <p>
-On the <strong>Create/edit document</strong> screen on the right, scroll down and replace the &quot;##&quot; in the snippet call with the document ID of the FAQ content page. Scroll up and select the <strong>Page Settings</strong> tab and make sure the <strong>Published</strong> checkbox is checked. Notice the radio buttons at the top of the <strong>Create/edit document</strong> screen: 
+    On the <strong>Create/edit document</strong> screen on the right, scroll down and replace the &quot;##&quot; in the snippet tag with
+    the document ID of the FAQ content page. Scroll up and select the <strong>Page Settings</strong> tab and make sure the
+    <strong>Published</strong> checkbox is checked. Notice the radio buttons at the top of the <strong>Create/edit document</strong> screen:
 </p>
+
 <p>
 <img alt="ezfaqtutorial-image5" border="0" height="60" src="images/ezfaqtutorial5.png" width="490" /> 
 </p>
+
 <p>
-These determine what happens after you click on the save button. Click on the <strong>Continue editing</strong> button. This will save us a step by keeping us at the <strong>Create/edit document</strong> screen after we save the document. 
+    These determine what happens after you click on the save button. Click on the <strong>Continue editing</strong> button. This will save
+    us a step by keeping us at the <strong>Create/edit document</strong> screen after we save the document.
 </p>
+
 <p>
-Click on <strong>Save</strong>. You should now have a working FAQ page. You should also see a new tab at the top of the <strong>Create/edit document</strong> screen: <strong>Preview</strong>. Click on the <strong>Preview</strong> tab now and you should see your FAQ page. Notice that when you put the mouse over a question, it turns into a hand cursor. If you click on the question, the answer automatically appears. You can also show or hide all the answers by clicking on one of the boxes at the top of the screen. 
+    Click on <strong>Save</strong>. You should now have a working FAQ page. You should also see a new tab at the top of the <strong>Create/edit
+    document</strong> screen: <strong>Preview</strong>. Click on the <strong>Preview</strong> tab now and you should see your FAQ page.
+    Notice that when you put the mouse over a question, it turns into a hand cursor. If you click on the question, the answer automatically
+    appears. You can also show or hide all the answers by clicking on one of the boxes at the top of the screen.
 </p>
+
 <h3>Using Flash Videos and Lightbox</h3>
+
 <p>An answer in EZfaq can be in the form of a Flash video using the swfObject Snippet (get it <a href="http://modxcms.com/SWFObject-1815.html">here</a>) and the following format:</p>
 
-<p>Q:How do I play Flash in here?<br><br>
-<pre>
-A:[<!-- -->[swfObject? &amp;swfid=`0` &amp;swfFile=`assets/flash/playback.swf` &amp;swfWidth=`325` &amp;swfHeight=`155`]<!-- -->]<br>
-</pre>
-</p>
-<p>For a lightbox image, use:<br>
-<pre>
-Q:How do I work with lightbox?<br>
 
-A:&lt;a href="http://domain.com/assets/images/small-pic.jpg" rel="lightbox"&gt;&lt;img src="http://domain.com/assets/images/large-pic.jpg" alt="" width="120" height="120" border="0" /&gt;&lt;/a&gt;
-</pre>
-</p>
+<p>Q:How do I play Flash in here?</p>
+
+
+<p>A:[<!-- -->[swfObject? &amp;swfid=`0` &amp;swfFile=`assets/flash/playback.swf` &amp;swfWidth=`325` &amp;swfHeight=`155`]<!-- -->]</p>
+
+<p>For a lightbox image, use:</p>
+
+<p>Q:How do I work with lightbox?</p>
+
+<p>A:&lt;a href="http://domain.com/assets/images/small-pic.jpg" rel="lightbox"&gt;&lt;img src="http://domain
+.com/assets/images/large-pic
+.jpg" alt="" width="120" height="120" border="0" /&gt;&lt;/a&gt;</p>
 
 
 <h3>Customizing the FAQ page</h3>
 <p>
-There are some things you can change on the FAQ page by editing the EZfaq.css file or by adding parameters to the EZfaq snippet call. 
+There are some things you can change on the FAQ page by editing the EZfaq.css file or by adding properties to the EZfaq snippet tag.
 </p>
+
 <p>
-The .CSS file is called <strong>ezfaq.css</strong> and you can find it in the <strong>assets/snippets/ezfaq</strong> directory of your site. The main changes to be made here are to the colors of the elements on the page. Comments in the .CSS file will let you know what the foreground and background colors refer to. Making changes to the spacing and margins of the FAQ is difficult and may not work the way you expect because the effects are created with Javascript so many of the .css directives are ignored. 
+    The .CSS file is called <strong>ezfaq.css</strong> and you can find it in the <strong>assets/snippets/ezfaq</strong> directory of your
+    site. The main changes to be made here are to the colors of the elements on the page. Comments in the .CSS file will let you know what
+    the foreground and background colors refer to. Making changes to the spacing and margins of the FAQ is difficult and may not work the
+    way you expect because the effects are created with Javascript so many of the .css directives are ignored.
 </p>
+
+<p>If you want to change the CSS, make a copy of the ezfaq.css file (with a different name) and use the <fixedpre>&ezfaqCssPath</fixedpre> property in the snippet tag to point to it.</p>
+
 <p>
-You can also change the look of the page with parameters in the snippet call. Here is a list of the EZfaq parameters and what they do: 
+You can also change the look of the page with properties in the snippet tag. Here is a list of the EZfaq properties and what they do:
 </p>
-<table class="parameters">
+<table class="properties">
     <tbody>
         <tr>
-            <th>Parameter</th><th>Effect</th><th>Default</th>
+            <th>Property</th><th>Effect</th><th>Default</th>
         </tr>
         <tr>
             <td>&amp;lang</td>
@@ -202,7 +283,7 @@ You can also change the look of the page with parameters in the snippet call. He
             <td>`[+]`</td>
         </tr>
 <tr>
-        <td class="note" colspan="3">Note: To use a URL replace the &quot;=&quot; sign with &quot;EQUALS&quot; in the snippet call        <br>Example: &amp;statusOpenHTML=`&lt;img srcEQUALS&quot;assets/snippets/ezfaq/images/minus.png&quot;&gt;`
+        <td class="note" colspan="3">Note: To use a URL replace the &quot;=&quot; sign with &quot;EQUALS&quot; in the snippet tag        <br>Example: &amp;statusOpenHTML=`&lt;img srcEQUALS&quot;assets/snippets/ezfaq/images/minus.png&quot;&gt;`
         <br>Example: &amp;statusClosedHTML=`&lt;img srcEQUALS&quot;assets/snippets/ezfaq/images/plus.png&quot;&gt;
         </tr>
         <tr>
@@ -238,4 +319,5 @@ You can also change the look of the page with parameters in the snippet call. He
         </tr>
     </tbody>
 </table>
-<p></p>>
+<p></p>
+<p>&nbsp;</p>

@@ -53,12 +53,12 @@ Work in progress can go here and won't be displayed. (optional)
 EZfaq Snippet call
 ------------------
 The minimal snippet call is:
-[[!EZfaq? &docID=`##`]]
+[[!EZfaq? &ezfaqDocID=`##`]]
 
 (where ## is the document identifier of the content document described above).
 Snippet names and parameter names are case-sensitive so be careful when typing them.
 Parameters must be enclosed in "back-ticks" not single quotes.
-Note that the docID is NOT the document identifier of the document containing the
+Note that the ezfaqDocID is NOT the document identifier of the document containing the
 snippet call. It is the document identifier of the document containing the Qs and As.
 
 EZfaq Manual Installation
@@ -84,7 +84,7 @@ It just holds the content. You can leave most of the fields blank.
 7. Make sure it's published and will show in the menu.
 
 8. The document's content will usually be just the snippet call:
-[[EZfaq? &docID=`##`]]
+[[EZfaq? &ezfaqDocID=`##`]]
 
 9. Replace ## with the document number of your unpublished FAQ content document created above.
 
@@ -138,7 +138,7 @@ check.png        x.png
 
 Image URL full example:
 
-[[EZfaq? &docID=`12` &statusOpenHTML=`<img srcEQUALS"assets/components/ezfaq/images/minus.png">` &statusClosedHTML=`<img srcEQUALS"assets/components/ezfaq/images/plus.png">`]]
+[[EZfaq? &ezfaqDocID=`12` &statusOpenHTML=`<img srcEQUALS"assets/components/ezfaq/images/minus.png">` &statusClosedHTML=`<img srcEQUALS"assets/components/ezfaq/images/plus.png">`]]
 
 
 Styling EZfaq

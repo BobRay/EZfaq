@@ -3,7 +3,6 @@
  * EZFaq Build Script
  *
  * @name EZFaq
- * @version 3.2.2
  * @release beta1
  * @author BobRay <bobray@softville.com>
  */
