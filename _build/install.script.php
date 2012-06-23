@@ -2,6 +2,9 @@
 /**
  * @package ezfaq
  */
+
+/* @var $object modTransportPackage */
+/* @var $options array */
 $root = $object->xpdo->getOption('core_path');
 $sources= array (
     'docs' => $root . 'components/ezfaq/docs/'
@@ -18,6 +21,7 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
             $success = true;
             break;
         }
+/* @var $r modResource */
         if ($install_sample == 'Yes') {
             $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"Creating resource: Sample FAQ Page<br />");
             $r = $object->xpdo->newObject('modResource');
@@ -70,8 +74,9 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
             $r->set('hidemenu','1');
 
             $r->save();
-            $faqContentId = $r->get('id');  /* need this to set docID in the snippet */
+            $faqContentId = $r->get('id');  /* need this to set ezfaqDocID in the snippet */
 
+            /* @var $resource modResource */
             $resource = $object->xpdo->getObject('modResource', array('pagetitle' => 'Sample FAQ Page') );
             if ($resource) {
                 $resource->setContent("[[EZfaq? &ezfaqDocID=`" . $faqContentId . "`]]" );
@@ -98,13 +103,13 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
         } else {
             $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the FAQ page manually</b><br />");
         }
-
+        /* @var $resource2 modResource */
         /* remove sample faq page */
-        $resource = $object->xpdo->getObject('modResource',array(
+        $resource2 = $object->xpdo->getObject('modResource',array(
             'pagetitle' => 'Sample FAQ Page',
         ));
-        if ($resource != null) {
-            $resource->remove();
+        if ($resource2 != null) {
+            $resource2->remove();
         } else {
             $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the FAQ Content page manually</b><br />");
         }
