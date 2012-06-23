@@ -74,7 +74,7 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
 
             $resource = $object->xpdo->getObject('modResource', array('pagetitle' => 'Sample FAQ Page') );
             if ($resource) {
-                $resource->setContent("[[EZfaq? &docID=`" . $faqContentId . "`]]" );
+                $resource->setContent("[[EZfaq? &ezfaqDocID=`" . $faqContentId . "`]]" );
                 $resource->save();
             }
         }
