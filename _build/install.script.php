@@ -23,7 +23,7 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
         }
 /* @var $r modResource */
         if ($install_sample == 'Yes') {
-            $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"Creating resource: Sample FAQ Page<br />");
+            $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"Creating resource: Sample FAQ Page");
             $r = $object->xpdo->newObject('modResource');
             $r->set('class_key','modResource');
             $r->set('context_key','web');
@@ -50,7 +50,7 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
             $faqId = $r->get('id');  /* need this to set content page parent */
 
             /* now create FAQ content page */
-            $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"<br>Creating resource: FAQ Contents<br />");
+            $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"<br>Creating resource: FAQ Contents");
             $r = $object->xpdo->newObject('modResource');
 
             $r->set('class_key','modResource');
