@@ -1,8 +1,9 @@
 <?php
 /**
  * @package ezfaq
- * @author Bob Ray <bobray@softville.com>
+ * @author Bob Ray <https://bobsguides.com>
  * @created 03-23-2011
+ * @Copyright 2011-2017 Bob Ray
 */
 /*
 (based on an idea from SorenG and JavaScript code from DynamicDrive.com)
@@ -100,7 +101,7 @@ Some styling is accomplished with the parameters in the snippet call. Other styl
 
 
 Using Flash Videos and lightbox in the FAQ
-An FAQ answer can be in the form of a Flash video using the MODx swfObject snippet (http://modxcms.com/SWFObject-1815.html) and the following format:
+An FAQ answer can be in the form of a Flash video using the MODX swfObject snippet (http://modxcms.com/SWFObject-1815.html) and the following format:
 
 Q:How do I play Flash in here?
 

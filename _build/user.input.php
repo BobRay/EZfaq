@@ -4,7 +4,10 @@
  * @subpackage build
  */
 $output = '';
-
+return 'Action: ' . $options[xPDOTransport::PACKAGE_ACTION] . '<br />' .
+    'Install Constant: ' . xPDOTransport::ACTION_INSTALL . '<br />' .
+    'Upgrade Constant: ' . xPDOTransport::ACTION_UPGRADE . '<br />' .
+    'Uninstall Constant: ' . xPDOTransport::ACTION_UNINSTALL;
  if ($options[xPDOTransport::PACKAGE_ACTION] == 1) {
     $output = '<p>&nbsp;</p>
     <input type="checkbox" name="install_sample" id="install_sample" value="Yes" align="left" />&nbsp;&nbsp;

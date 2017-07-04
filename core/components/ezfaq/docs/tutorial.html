@@ -1,17 +1,16 @@
 <p>
-I've chosen this as one of the first snippet tutorials because EZfaq is one of the easiest snippets to use. EZfaq creates a slick, attractive, FAQ page with expanding and contracting answers like the one <a href="[[~31]]" title="MODx Newbie FAQ">here</a>.
+I've chosen this as one of the first snippet tutorials because EZfaq is one of the easiest snippets to use. EZfaq creates a slick, attractive, FAQ page with expanding and contracting answers like the one <a href="[[~31]]" title="MODX Newbie FAQ">here</a>.
 </p>
 
 <div class="box">
     <p>Upgrade note: The property for specifying the CSS path (<fixedpre>&cssPath</fixedpre>) has been changed to <fixedpre>&ezfaqCssPath</fixedpre> and the <fixedpre>&docID</fixedpre> property has been changed to <fixedpre>&ezfaqDocID</fixedpre>. This was done to avoid potential conflicts with other components.</p>
 </div>
-<h3>Installing EZfaq for MODx Revolution 2.0.0 and Beyond</h3>
+<h3>Installing EZfaq for MODX Revolution 2.0.0 and Beyond</h3>
 <p>
-    This couldn't be much easier. Just go to System | Package Management on the main menu in the MODx Manager and click on the "Download
+    This couldn't be much easier. Just go to System | Package Management on the main menu in the MODX Manager and click on the "Download
     Extras" button. That will take you to the Revolution Repository (AKA Web Transport Facility). Find the EZfaq snippet and put a check
     next to it (it should be under "Content," but the last time I looked it was misfiled in the Communication section). Check any other
-    packages you might want to install and click on "Finish." That should bring you back to your Package Management grid. Right click on
-    EZfaq and select "Install Package." The EZfaq snippet should now be installed.
+    packages you might want to install and click on "Finish." That should bring you back to your Package Management grid. Click on the &quot;Install&quot;button next to the EZfaq Package and follow the steps. When you've finished, the EZfaq snippet should be installed.
 </p>
 
 <p>If you chose to install the sample FAQ (highly recommended) you should see a Resource called FAQ and, under it, an unpublished resource
@@ -21,9 +20,9 @@ I've chosen this as one of the first snippet tutorials because EZfaq is one of t
     the FAQ page.
 </p>
 
-<h3>Installing EZfaq for MODx Evolution and earlier</h3>
+<h3>Installing EZfaq for MODX Evolution and earlier</h3>
 <p>
-    The first step is to go to the MODx Repository <a href="http://modxcms.com/extras/download/218/218">here</a> and download EZfaq.zip to
+    The first step is to go to the MODX Repository <a href="https://modxcms.com/extras/download/218/218">here</a> and download EZfaq.zip to
     your computer.
 </p>
 <p>
@@ -59,7 +58,7 @@ Make sure all the files are there. You should see this structure:
 Now let's create a page to display the FAQ items. Note that this page won't hold any of the FAQ content, just the snippet tag that fetches them.
 </p>
 <p>
-Launch the <strong>MODx Manager</strong>, (log on with http://yoursite.com/manager). 
+Launch the <strong>MODX Manager</strong>, (log on with http://yoursite.com/manager). 
 </p>
 <p>
 Select the <strong>Site</strong> tab near the top of the page and click on <strong>New Document</strong>. 
@@ -71,7 +70,7 @@ Fill in the fields on the document editing screen as follows:
 <img alt="ezfaq-image1" border="0" height="436" src="images/ezfaqtutorial1.png" width="493" /> 
 </p>
 <p>
-    The Menu index number tells MODx where to show this document in the menu. If you'd like your FAQ to be at the end of your menu, for
+    The Menu index number tells MODX where to show this document in the menu. If you'd like your FAQ to be at the end of your menu, for
     example, you can put 99 in the Menu index box. If you're not sure, don't worry, you can come back to this page and change it later.
 </p>
 <p>
@@ -120,9 +119,9 @@ Now, scroll up to the top of the page and click on <strong>Save</strong>.
 
 <p>Now we'll create the actual snippet that displays the FAQ by creating a new snippet in the Manager and pasting in the EZfaq code.</p>
 
-<p>In the MODx Manager, create a new snippet (Resources | Manage Resources | Snippets | New Snippet). Use EZfaq for the name of the snippet.
+<p>In the MODX Manager, create a new snippet (Resources | Manage Resources | Snippets | New Snippet). Use EZfaq for the name of the snippet.
     Be careful how you spell it, snippet names are case-sensitive and must be spelled exactly the same way in the snippet name and the
-    snippet tag you place in a MODx document.
+    snippet tag you place in a MODX document.
 </p>
 
 <p>To fill the content of the snippet, there are two ways to go. The first is the most foolproof:</p>
@@ -141,7 +140,7 @@ Now, scroll up to the top of the page and click on <strong>Save</strong>.
 <h3>Creating the FAQ Content Document</h3>
 <p>
     If we looked at our FAQ page now, there would be nothing to see because we haven't created any content for it yet. We just created a
-    document using one method. In MODx, there are often several ways to accomplish the same thing. Now we'll create a new document using
+    document using one method. In MODX, there are often several ways to accomplish the same thing. Now we'll create a new document using
     another method.
 </p>
 <p>
@@ -283,8 +282,8 @@ You can also change the look of the page with properties in the snippet tag. Her
             <td>`[+]`</td>
         </tr>
 <tr>
-        <td class="note" colspan="3">Note: To use a URL replace the &quot;=&quot; sign with &quot;EQUALS&quot; in the snippet tag        <br>Example: &amp;statusOpenHTML=`&lt;img srcEQUALS&quot;assets/snippets/ezfaq/images/minus.png&quot;&gt;`
-        <br>Example: &amp;statusClosedHTML=`&lt;img srcEQUALS&quot;assets/snippets/ezfaq/images/plus.png&quot;&gt;
+        <td class="note" colspan="3">Note: To use a URL replace the &quot;=&quot; sign with &quot;EQUALS&quot; in the snippet tag        <br />Example: &amp;statusOpenHTML=`&lt;img srcEQUALS&quot;assets/snippets/ezfaq/images/minus.png&quot;&gt;`
+        <br />Example: &amp;statusClosedHTML=`&lt;img srcEQUALS&quot;assets/snippets/ezfaq/images/plus.png&quot;&gt;</td>
         </tr>
         <tr>
             <td>&amp;openColor</td>
