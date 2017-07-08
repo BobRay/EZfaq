@@ -1,6 +1,7 @@
 EZfaq Snippet
 
 Author: Bob Ray (based on an idea from SorenG and JavaScript code from DynamicDrive.com)
+Copyright 2011-2017 Bob Ray
 
 Thanks to MODX user Sinbad for information on using Flash and Lightbox with EZfaq.
 
