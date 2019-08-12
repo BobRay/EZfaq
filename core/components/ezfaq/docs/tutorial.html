@@ -3,14 +3,14 @@ I've chosen this as one of the first snippet tutorials because EZfaq is one of t
 </p>
 
 <div class="box">
-    <p>Upgrade note: The property for specifying the CSS path (<fixedpre>&cssPath</fixedpre>) has been changed to <fixedpre>&ezfaqCssPath</fixedpre> and the <fixedpre>&docID</fixedpre> property has been changed to <fixedpre>&ezfaqDocID</fixedpre>. This was done to avoid potential conflicts with other components.</p>
+    <p>Upgrade note: As of version 3.3.0, the property for specifying the CSS path (<fixedpre>&cssPath</fixedpre>) has been changed to <fixedpre>&ezfaqCssPath</fixedpre> and the <fixedpre>&docID</fixedpre> property has been changed to <fixedpre>&ezfaqDocID</fixedpre>. This was done to avoid potential conflicts with other components.</p>
 </div>
 <h3>Installing EZfaq for MODX Revolution 2.0.0 and Beyond</h3>
 <p>
-    This couldn't be much easier. Just go to System | Package Management on the main menu in the MODX Manager and click on the "Download
-    Extras" button. That will take you to the Revolution Repository (AKA Web Transport Facility). Find the EZfaq snippet and put a check
+    This couldn't be much easier. Just go to Extras | Installer on the main menu in the MODX Manager. Click on the "Download
+    Extras" button. That will take you to the Revolution Repository. Find the EZfaq snippet and put a check
     next to it (it should be under "Content," but the last time I looked it was misfiled in the Communication section). Check any other
-    packages you might want to install and click on "Finish." That should bring you back to your Package Management grid. Click on the &quot;Install&quot;button next to the EZfaq Package and follow the steps. When you've finished, the EZfaq snippet should be installed.
+    packages you might want to install and click on "Return to Package Manager" That should bring you back to your Package Management grid. Click on the &quot;Install&quot;button next to the EZfaq Package and follow the steps. When you've finished, the EZfaq snippet should be installed.
 </p>
 
 <p>If you chose to install the sample FAQ (highly recommended) you should see a Resource called FAQ and, under it, an unpublished resource
@@ -20,39 +20,6 @@ I've chosen this as one of the first snippet tutorials because EZfaq is one of t
     the FAQ page.
 </p>
 
-<h3>Installing EZfaq for MODX Evolution and earlier</h3>
-<p>
-    The first step is to go to the MODX Repository <a href="https://modxcms.com/extras/download/218/218">here</a> and download EZfaq.zip to
-    your computer.
-</p>
-<p>
-    Next, extract the contents of the EZfaq zip file to your assets/snippets directory. The files should end up in a directory called
-    /assets/snippets/ezfaq.
-</p>
-<p>
-Make sure all the files are there. You should see this structure: 
-</p>
-<ul>
-    <li>Images (folder) 
-    <ul>
-        <li>check.png</li>
-        <li>minus.png</li>
-        <li>minus2.png</li>
-        <li>plus.png</li>
-        <li>plus2.png</li>
-        <li>x.png</li>
-    </ul>
-    </li>
-    <li>Lang (folder) 
-    <ul>
-        <li>en.inc.php</li>
-    </ul>
-    </li>
-    <li>ezfaq.css</li>
-    <li>ezfaq.inc.php</li>
-    <li>readme.txt</li>
-    <li>switchcontent.js</li>
-</ul>
 <h3>Creating the Main FAQ Page</h3>
 <p>
 Now let's create a page to display the FAQ items. Note that this page won't hold any of the FAQ content, just the snippet tag that fetches them.
@@ -235,8 +202,7 @@ Fill in the fields to match the screen shot below:
 <p>Q:How do I work with lightbox?</p>
 
 <p>A:&lt;a href="http://domain.com/assets/images/small-pic.jpg" rel="lightbox"&gt;&lt;img src="http://domain
-.com/assets/images/large-pic
-.jpg" alt="" width="120" height="120" border="0" /&gt;&lt;/a&gt;</p>
+.com/assets/images/large-pic.jpg" alt="" width="120" height="120" border="0" /&gt;&lt;/a&gt;</p>
 
 
 <h3>Customizing the FAQ page</h3>

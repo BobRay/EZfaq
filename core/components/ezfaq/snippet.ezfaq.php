@@ -3,7 +3,7 @@
  * @package ezfaq
  * @author Bob Ray <https://bobsguides.com>
  * @created 03-23-2011
- * @Copyright 2011-2017 Bob Ray
+ * @Copyright 2011-2019 Bob Ray
 */
 /*
 (based on an idea from SorenG and JavaScript code from DynamicDrive.com)
