@@ -128,7 +128,9 @@ $error_message = '';
 
 $modx->lexicon->load('ezfaq:default');
 
-
+$prefix = $modx->getVersionData()['version'] >= 3
+    ? 'MODX\Revolution\\'
+    : '';
 /* ********************************************
 Make sure we have what we need before proceeding
 ***********************************************/
@@ -137,7 +139,7 @@ if (!isset($ezfaqDocID)) { /* User didn't send docID parameter */
     return $modx->lexicon('ezfaq-docID-required');
 }
 
-$resource = $modx->getObject('modResource',$ezfaqDocID);
+$resource = $modx->getObject($prefix . 'modResource',$ezfaqDocID);
 if ($resource == null) { /* user requested a non-existing document */
    return $modx->lexicon('ezfaq-doc-not-found');
 }

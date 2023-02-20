@@ -8,11 +8,20 @@
 /* @var $options array */
 
 
+
+
 if ($transport) {
     $modx =& $transport->xpdo;
 } else {
     $modx =& $object->xpdo;
 }
+
+$prefix = $modx->getVersionData()['version'] >= 3
+    ? 'MODX\Revolution\\'
+    : '';
+
+$context = $modx->getOption('default_context', null, 'web');
+
 $root = $modx->getOption('core_path');
 $sources= array (
     'docs' => $root . 'components/ezfaq/docs/'
@@ -24,7 +33,7 @@ $modx->log(xPDO::LOG_LEVEL_INFO,'Running PHP Resolver.');
 switch($options[xPDOTransport::PACKAGE_ACTION]) {
     case xPDOTransport::ACTION_INSTALL:
         $install_sample = $modx->getOption('install_sample',$options,'No');
-        if ($modx->getObject('modResource',array('pagetitle'=>'Sample FAQ Page'))) {
+        if ($modx->getObject($prefix . 'modResource',array('pagetitle'=>'Sample FAQ Page'))) {
             /* don't install resources if they're already there */
             $success = true;
             break;
@@ -32,9 +41,8 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
 /* @var $r modResource */
         if ($install_sample == 'Yes') {
             $modx->log(xPDO::LOG_LEVEL_INFO,"Creating resource: Sample FAQ Page");
-            $r = $modx->newObject('modResource');
-            $r->set('class_key','modResource');
-            $r->set('context_key','web');
+            $r = $modx->newObject($prefix . 'modResource');
+            $r->set('context_key', $context);
             $r->set('type','document');
             $r->set('contentType','text/html');
             $r->set('pagetitle','Sample FAQ Page');
@@ -59,10 +67,8 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
 
             /* now create FAQ content page */
             $modx->log(xPDO::LOG_LEVEL_INFO,"<br>Creating resource: FAQ Contents");
-            $r = $modx->newObject('modResource');
-
-            $r->set('class_key','modResource');
-            $r->set('context_key','web');
+            $r = $modx->newObject($prefix . 'modResource');
+            $r->set('context_key', $context);
             $r->set('type','document');
             $r->set('contentType','text/html');
             $r->set('pagetitle','FAQ Content');
@@ -85,7 +91,7 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
             $faqContentId = $r->get('id');  /* need this to set ezfaqDocID in the snippet */
 
             /* @var $resource modResource */
-            $resource = $modx->getObject('modResource', array('pagetitle' => 'Sample FAQ Page') );
+            $resource = $modx->getObject($prefix . 'modResource', array('pagetitle' => 'Sample FAQ Page') );
             if ($resource) {
                 $resource->setContent("[[EZfaq? &ezfaqDocID=`" . $faqContentId . "`]]" );
                 $resource->save();
@@ -103,7 +109,7 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
         $success = false;
 
         /* remove sample content page */
-        $resource = $modx->getObject('modResource',array(
+        $resource = $modx->getObject($prefix . 'modResource',array(
             'pagetitle' => 'FAQ Content',
         ));
         if ($resource != null) {
@@ -113,7 +119,7 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
         }
         /* @var $resource2 modResource */
         /* remove sample faq page */
-        $resource2 = $modx->getObject('modResource',array(
+        $resource2 = $modx->getObject($prefix . 'modResource',array(
             'pagetitle' => 'Sample FAQ Page',
         ));
         if ($resource2 != null) {
