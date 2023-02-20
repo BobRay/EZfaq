@@ -13,6 +13,8 @@ $mtime = explode(" ", $mtime);
 $mtime = $mtime[1] + $mtime[0];
 $tstart = $mtime;
 
+require 'C:\xampp\htdocs\addons\core\config\config.inc.php';
+
 $root = dirname(dirname(__FILE__)).'/';
 
 $sources= array (
@@ -28,11 +30,11 @@ $element_namespace = 'ezfaq';
 $element_name = 'EZfaq';
 $element_object_type = 'modSnippet';
 $element_type = 'snippet';
-$element_description = 'EZfaq 3.3.0-pl -  Generates a FAQ page for your site.';
+$element_description = 'EZfaq 3.3.3-pl -  Generates a FAQ page for your site.';
 $element_source_file = $sources['source_core'] . '/snippet.ezfaq.php';
 $element_category = 0;
 $package_name = 'ezfaq';
-$package_version = '3.3.0';
+$package_version = '3.3.3';
 $package_release = 'pl';
 $assets_resolver_source = $sources['source_assets'];
 $assets_resolver_target = "return MODX_ASSETS_PATH . 'components/';";
@@ -41,7 +43,7 @@ $core_resolver_target = "return MODX_CORE_PATH . 'components/';";
 
 set_time_limit(0);
 
-require_once dirname(__FILE__).'/build.config.php';
+// require_once dirname(__FILE__).'/build.config.php';
 
 require_once (MODX_CORE_PATH . 'model/modx/modx.class.php');
 $modx= new modX();
