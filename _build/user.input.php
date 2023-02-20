@@ -2,6 +2,7 @@
 /**
  * @package ezfaq
  * @subpackage build
+ * @var array $options
  */
 $output = '';
 return 'Action: ' . $options[xPDOTransport::PACKAGE_ACTION] . '<br />' .

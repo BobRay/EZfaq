@@ -3,28 +3,36 @@
  * @package ezfaq
  */
 
+/* @var $transport modTransportPackage */
 /* @var $object modTransportPackage */
 /* @var $options array */
-$root = $object->xpdo->getOption('core_path');
+
+
+if ($transport) {
+    $modx =& $transport->xpdo;
+} else {
+    $modx =& $object->xpdo;
+}
+$root = $modx->getOption('core_path');
 $sources= array (
     'docs' => $root . 'components/ezfaq/docs/'
 );
-$default_template = $object->xpdo->getOption('default_template');
+$default_template = $modx->getOption('default_template');
 
 $success = false;
-$object->xpdo->log(xPDO::LOG_LEVEL_INFO,'Running PHP Resolver.');
+$modx->log(xPDO::LOG_LEVEL_INFO,'Running PHP Resolver.');
 switch($options[xPDOTransport::PACKAGE_ACTION]) {
     case xPDOTransport::ACTION_INSTALL:
-        $install_sample = $object->xpdo->getOption('install_sample',$options,'No');
-        if ($object->xpdo->getObject('modResource',array('pagetitle'=>'Sample FAQ Page'))) {
+        $install_sample = $modx->getOption('install_sample',$options,'No');
+        if ($modx->getObject('modResource',array('pagetitle'=>'Sample FAQ Page'))) {
             /* don't install resources if they're already there */
             $success = true;
             break;
         }
 /* @var $r modResource */
         if ($install_sample == 'Yes') {
-            $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"Creating resource: Sample FAQ Page");
-            $r = $object->xpdo->newObject('modResource');
+            $modx->log(xPDO::LOG_LEVEL_INFO,"Creating resource: Sample FAQ Page");
+            $r = $modx->newObject('modResource');
             $r->set('class_key','modResource');
             $r->set('context_key','web');
             $r->set('type','document');
@@ -50,8 +58,8 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
             $faqId = $r->get('id');  /* need this to set content page parent */
 
             /* now create FAQ content page */
-            $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"<br>Creating resource: FAQ Contents");
-            $r = $object->xpdo->newObject('modResource');
+            $modx->log(xPDO::LOG_LEVEL_INFO,"<br>Creating resource: FAQ Contents");
+            $r = $modx->newObject('modResource');
 
             $r->set('class_key','modResource');
             $r->set('context_key','web');
@@ -77,7 +85,7 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
             $faqContentId = $r->get('id');  /* need this to set ezfaqDocID in the snippet */
 
             /* @var $resource modResource */
-            $resource = $object->xpdo->getObject('modResource', array('pagetitle' => 'Sample FAQ Page') );
+            $resource = $modx->getObject('modResource', array('pagetitle' => 'Sample FAQ Page') );
             if ($resource) {
                 $resource->setContent("[[EZfaq? &ezfaqDocID=`" . $faqContentId . "`]]" );
                 $resource->save();
@@ -95,23 +103,23 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
         $success = false;
 
         /* remove sample content page */
-        $resource = $object->xpdo->getObject('modResource',array(
+        $resource = $modx->getObject('modResource',array(
             'pagetitle' => 'FAQ Content',
         ));
         if ($resource != null) {
             $resource->remove();
         } else {
-            $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the FAQ page manually</b><br />");
+            $modx->log(xPDO::LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the FAQ page manually</b><br />");
         }
         /* @var $resource2 modResource */
         /* remove sample faq page */
-        $resource2 = $object->xpdo->getObject('modResource',array(
+        $resource2 = $modx->getObject('modResource',array(
             'pagetitle' => 'Sample FAQ Page',
         ));
         if ($resource2 != null) {
             $resource2->remove();
         } else {
-            $object->xpdo->log(xPDO::LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the FAQ Content page manually</b><br />");
+            $modx->log(xPDO::LOG_LEVEL_INFO,"<br /><b>NOTE: You will have to remove the FAQ Content page manually</b><br />");
         }
 
 
