@@ -9,11 +9,8 @@
  * Copyright Bob Ray 2011-2023
  */
 $output = '';
-return 'Action: ' . $options[xPDOTransport::PACKAGE_ACTION] . '<br />' .
-    'Install Constant: ' . xPDOTransport::ACTION_INSTALL . '<br />' .
-    'Upgrade Constant: ' . xPDOTransport::ACTION_UPGRADE . '<br />' .
-    'Uninstall Constant: ' . xPDOTransport::ACTION_UNINSTALL;
- if ($options[xPDOTransport::PACKAGE_ACTION] == 1) {
+
+ if ($options[xPDOTransport::PACKAGE_ACTION] == xPDOTransport::ACTION_INSTALL) {
     $output = '<p>&nbsp;</p>
     <input type="checkbox" name="install_sample" id="install_sample" value="Yes" align="left" />&nbsp;&nbsp;
     <label for="install_sample">Install Sample FAQ Page (recommended).</label>
