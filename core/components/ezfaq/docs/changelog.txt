@@ -1,14 +1,20 @@
 EZfaq Change Log
 ----------------
 
+3.3.3-pl
+--------
+ - Updates for MODX 3
+ - Code cleanup
+ - Minor improvements
+
 3.3.0-pl
 --------
-Renamed properties to avoid conflicts
-  cssPath -> ezfaqCssPath
-  docID -> ezfaqDocID
-Tweaks to CSS
-Code cleanup
-Added readme.md
+ - Renamed properties to avoid conflicts
+ - cssPath -> ezfaqCssPath
+ - docID -> ezfaqDocID
+ - Tweaks to CSS
+ - Code cleanup
+ - Added readme.md
 
 3.2.3
 -----
