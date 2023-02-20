@@ -1,7 +1,7 @@
 EZfaq Snippet
 
 Author: Bob Ray (based on an idea from SorenG and JavaScript code from DynamicDrive.com)
-Copyright 2011-2019 Bob Ray
+Copyright 2011-2023 Bob Ray
 
 Fully Compatible with MODX 3
 

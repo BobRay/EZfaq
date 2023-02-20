@@ -1,6 +1,9 @@
 <?php
 /**
  * EZFaq English Lexicon
+ * @author BobRay <https://bobsguides.com>
+ *
+ * Copyright Bob Ray 2011-2023
  *
  * @package ezfaq
  */

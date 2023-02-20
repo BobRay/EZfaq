@@ -1,6 +1,10 @@
 <?php
 /**
  * @package ezfaq
+ *
+ * @author BobRay <https://bobsguides.com>
+ *
+ * Copyright Bob Ray 2011-2023
  */
 
 /* @var $transport modTransportPackage */

@@ -3,6 +3,10 @@
  * @package ezfaq
  * @subpackage build
  * @var array $options
+ *
+ * @author BobRay <https://bobsguides.com>
+ *
+ * Copyright Bob Ray 2011-2023
  */
 $output = '';
 return 'Action: ' . $options[xPDOTransport::PACKAGE_ACTION] . '<br />' .

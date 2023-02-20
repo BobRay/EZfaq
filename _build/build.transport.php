@@ -4,7 +4,9 @@
  *
  * @name EZFaq
  *
- * @author BobRay <bobray@softville.com>
+ * @author BobRay <https://bobsguides.com>
+ *
+ * Copyright Bob Ray 2011-2023
  */
 $mtime = microtime();
 $mtime = explode(" ", $mtime);
